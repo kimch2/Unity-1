@@ -1,0 +1,17 @@
+{
+    "name": "Unity.ThirdParty",
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.Addressables"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Switch"
+    ],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
