@@ -20,13 +20,22 @@ namespace ETModel
          public override string Name => "VersionBuilder";
          protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
         {
+<<<<<<< Updated upstream
+=======
+            FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
+
+>>>>>>> Stashed changes
             var result = base.DoBuild<TResult>(builderInput, aaContext);
             var filepath = ETModel.PathHelper.RemoteBuildPath;
             BuildVerison(filepath);
             return result;
         }
   
+<<<<<<< Updated upstream
         public async void BuildVerison(string dir)
+=======
+        public   void BuildVerison(string dir)
+>>>>>>> Stashed changes
         {
            VersionConfig versionProto = new VersionConfig();
             GenerateVersionProto(dir, versionProto, "");

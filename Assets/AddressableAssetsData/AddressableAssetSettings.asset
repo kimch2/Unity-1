@@ -51,7 +51,11 @@ MonoBehaviour:
       - m_Id: 2efa7e700bfa5324f95861029c1de713
         m_Value: Assets/ServerData/[BuildTarget]
       - m_Id: c8f4b96698df8a04c96255cd7bfe7ae9
+<<<<<<< Updated upstream
         m_Value: http://139.196.233.153/StreamingAssets/Unity/[BuildTarget]
+=======
+        m_Value: http://139.196.233.153/Unity/[BuildTarget]y/[BuildTarget]
+>>>>>>> Stashed changes
     - m_InheritedParent: 
       m_Id: 1d775221f5417ab43a4549f931d66f02
       m_ProfileName: Remote

@@ -25,7 +25,11 @@ namespace ETModel
 
         protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
         {
+<<<<<<< Updated upstream
             FileHelper.CleanDirectory("Assets/ServerData/");
+=======
+            FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
+>>>>>>> Stashed changes
 
             AddressableAssetSettings settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>($"{AddressableAssetSettingsDefaultObject.kDefaultConfigFolder}/{AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName}.asset");
  
