@@ -15,15 +15,13 @@ MonoBehaviour:
   m_GroupName: UIWindow
   m_Data:
     m_SerializedData: []
-  m_GUID: 77e3ebcb28ef3404aac97184dd4c126d
+  m_GUID: 841ff4b332d5f904aadc0d9f09964146
   m_SerializeEntries:
   - m_GUID: 1436be5265c04aa4fbe860fd9d23ccde
     m_Address: UIStartWindow
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 1c5571c49e6258c41953edb049b48c14
@@ -31,8 +29,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: a38e97e47d8550e4c9d7e0b43c6584a2
@@ -40,13 +36,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1e4cd1bdb454100489f7fd79f3916fc8, type: 2}
-    - {fileID: 11400000, guid: 110596a6bf5cc09418b108b18a49aab6, type: 2}
+    - {fileID: 11400000, guid: 4dcf5b932ac3b2f40bcdab507dfaa074, type: 2}
+    - {fileID: 11400000, guid: a29bc7ceff219274b9043ac4d3c96b87, type: 2}

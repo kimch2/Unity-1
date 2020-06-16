@@ -15,20 +15,18 @@ MonoBehaviour:
   m_GroupName: ProjectPrefab
   m_Data:
     m_SerializedData: []
-  m_GUID: 3932823c7315f9b48b31065b6b747dc9
+  m_GUID: 6b90db51ce2a3d7498be0a44e3aa9138
   m_SerializeEntries:
   - m_GUID: b47a8b394f3522741b0343f1125dc17a
     m_Address: Main Camera
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 67b0d22ef51560a43afbf7aa2ffbaada, type: 2}
-    - {fileID: 11400000, guid: 798b65b4b30855246a1f96d5bb21dc44, type: 2}
+    - {fileID: 11400000, guid: 474ba2af1e2090f43a55dad2201d3496, type: 2}
+    - {fileID: 11400000, guid: 061acaa51f8710e47955224a20c4350d, type: 2}

@@ -15,20 +15,18 @@ MonoBehaviour:
   m_GroupName: Scene
   m_Data:
     m_SerializedData: []
-  m_GUID: 178c1b9471ce0e84e996c66b44942e4e
+  m_GUID: c71145e48553562428443887a06e94d2
   m_SerializeEntries:
   - m_GUID: 89c686e06714f034b94e72cc92295e37
     m_Address: MainScene
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEditor.SceneAsset, UnityEditor, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 19b40a133d0977349a461344cf327555, type: 2}
-    - {fileID: 11400000, guid: fad53c3bacbc9ce49bd16b30d02c70a2, type: 2}
+    - {fileID: 11400000, guid: adaf3337dcaa75a41825bf18af6eca07, type: 2}
+    - {fileID: 11400000, guid: 94f127d79c971fe4c826ce5021c4c1d5, type: 2}

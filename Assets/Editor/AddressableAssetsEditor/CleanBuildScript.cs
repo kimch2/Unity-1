@@ -25,12 +25,10 @@ namespace ETModel
 
         protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
         {
-<<<<<<< Updated upstream
-            FileHelper.CleanDirectory("Assets/ServerData/");
-=======
-            FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
->>>>>>> Stashed changes
 
+            if(Directory.Exists(ETModel.PathHelper.RemoteBuildPath))
+             FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
+ 
             AddressableAssetSettings settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>($"{AddressableAssetSettingsDefaultObject.kDefaultConfigFolder}/{AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName}.asset");
  
              //更新Group模板的发布路径和加载路径
@@ -109,7 +107,7 @@ namespace ETModel
             BundledAssetGroupSchema bundledAssetGroupSchema = schemas.Find(p => p.GetType() == typeof(BundledAssetGroupSchema)) as BundledAssetGroupSchema;
             if (bundledAssetGroupSchema != null)
             {
-                bundledAssetGroupSchema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
+                 bundledAssetGroupSchema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
                 bundledAssetGroupSchema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteLoadPath);
               }
         }

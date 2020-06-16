@@ -1,4 +1,5 @@
 ﻿
+using LitJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace ETModel
 {
     public class AssetsBundleComponent : MonoBehaviour
     {
-         public TMPro.TMP_Text Info;
+        public TMPro.TMP_Text Info;
         public TMPro.TMP_Text Progress;
         public TMPro.TMP_Text DownLoadSize;
         public GameObject ConfirmPanel;
@@ -23,8 +24,9 @@ namespace ETModel
  
          void Start()
         {
-             ConfirmBtn.onClick.AddListener(DownLoadBundle);
-            CheckDownLoadSize();
+ 
+            ConfirmBtn.onClick.AddListener(DownLoadBundle);
+             CheckDownLoadSize();
         }
 
 
@@ -49,6 +51,8 @@ namespace ETModel
         }
 
         private VersionConfig remoteVersionConfig;
+
+        private Dictionary<string, FileVersionInfo> hasDonwLoadedFile = new Dictionary<string, FileVersionInfo>();
         private byte[] remoteVersionConfigData;
 
         public Queue<string> bundles = new Queue<string>();
@@ -120,10 +124,11 @@ namespace ETModel
                 if (directoryInfo.Exists)
                 {
                     FileInfo[] fileInfos = directoryInfo.GetFiles();
-                    int directoryFolderLength = directoryInfo.FullName.Length + 1;
-                    foreach (FileInfo fileInfo in fileInfos)
+                    int directoryFolderLength = directoryInfo.FullName.Length;
+                     foreach (FileInfo fileInfo in fileInfos)
                     {
-                        if (remoteVersionConfig.FileInfoDict.ContainsKey(fileInfo.FullName.Substring(directoryFolderLength)))
+ 
+                         if (remoteVersionConfig.FileInfoDict.ContainsKey(fileInfo.FullName.Substring(directoryFolderLength)))
                         {
                             continue;
                         }
@@ -132,8 +137,7 @@ namespace ETModel
                         {
                             continue;
                         }
-
-                        fileInfo.Delete();
+                          fileInfo.Delete();
                     }
                 }
                 else
@@ -146,9 +150,12 @@ namespace ETModel
                 {
                     // 对比md5
                     string localFileMD5 = BundleHelper.GetBundleMD5(streamingVersionConfig, fileVersionInfo.File);
+
+ 
                     if (fileVersionInfo.MD5 == localFileMD5)
                     {
-                        continue;
+                         hasDonwLoadedFile.Add(fileVersionInfo.File, fileVersionInfo);
+                         continue;
                     }
 
                     this.bundles.Enqueue(fileVersionInfo.File);
@@ -192,6 +199,15 @@ namespace ETModel
                                 using (FileStream fs = new FileStream(path, FileMode.Create))
                                 {
                                     fs.Write(data, 0, data.Length);
+                                }
+                                hasDonwLoadedFile.Add(this.downloadingBundle, remoteVersionConfig.FileInfoDict[this.downloadingBundle]);
+                                VersionConfig config = new VersionConfig();
+                                config.FileInfoDict = hasDonwLoadedFile;
+                  
+                                var byteArray = System.Text.Encoding.UTF8.GetBytes(JsonMapper.ToJson(config));
+                                using (FileStream fs = new FileStream(PathHelper.SavePath + "Version.txt", FileMode.Create))
+                                {
+                                    fs.Write(byteArray, 0, byteArray.Length);
                                 }
                             }
                         }

@@ -124,18 +124,19 @@ namespace ETModel
         bool checkingUpdate;
         private void Update()
          {
-             if (checkingUpdate)
-             {
-                 checkUpdateTime += Time.deltaTime;
-                 if (checkUpdateTime > CHECKTIMEMAX)
-                 {
-                     //自测连接超时
-                     checkingUpdate = false;
-                     StopAllCoroutines();
-                     Info.text = $"连接超时";
-                     Start();
-                   }
-             }
+            if (checkingUpdate)
+            {
+                checkUpdateTime += Time.deltaTime;
+                if (checkUpdateTime > CHECKTIMEMAX)
+                {
+                    //自测连接超时
+                    checkingUpdate = false;
+                    StopAllCoroutines();
+                    Info.text = $"连接超时";
+                    Start();
+                }
+            }
+       
         }
 
         private IEnumerator DownLoadUpdate()

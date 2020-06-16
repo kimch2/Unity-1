@@ -15,15 +15,13 @@ MonoBehaviour:
   m_GroupName: Code
   m_Data:
     m_SerializedData: []
-  m_GUID: a137cb5aae41b53418b3d9cd045e0939
+  m_GUID: 7d2b24a5ed2ff604c91c6f9bfba5043d
   m_SerializeEntries:
   - m_GUID: d250e98e03d69b24aa052011e7bcbe93
     m_Address: DyncDll.dll
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.TextAsset, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: f362e9f5b73f96142b29c625cbd9787f
@@ -31,8 +29,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.TextAsset, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: fce6cab970eec7b458da050cc977f3ae
@@ -40,13 +36,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: cc4c5aae8afebf94f947cafe2fea0438, type: 2}
-    - {fileID: 11400000, guid: 453a7a67149ea2e4caa28134b2ace94b, type: 2}
+    - {fileID: 11400000, guid: 37fe7aaa2c3429841a4e80b4b7ed5abb, type: 2}
+    - {fileID: 11400000, guid: 9e678380ce1213a4294bdc0cf20c6d06, type: 2}

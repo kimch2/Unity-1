@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: a137cb5aae41b53418b3d9cd045e0939
+  m_DefaultGroup: 7d2b24a5ed2ff604c91c6f9bfba5043d
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
   m_DisableCatalogUpdateOnStart: 1
@@ -51,11 +51,7 @@ MonoBehaviour:
       - m_Id: 2efa7e700bfa5324f95861029c1de713
         m_Value: Assets/ServerData/[BuildTarget]
       - m_Id: c8f4b96698df8a04c96255cd7bfe7ae9
-<<<<<<< Updated upstream
-        m_Value: http://139.196.233.153/StreamingAssets/Unity/[BuildTarget]
-=======
-        m_Value: http://139.196.233.153/Unity/[BuildTarget]y/[BuildTarget]
->>>>>>> Stashed changes
+        m_Value: http://139.196.233.153/Unity/[BuildTarget]
     - m_InheritedParent: 
       m_Id: 1d775221f5417ab43a4549f931d66f02
       m_ProfileName: Remote
@@ -70,6 +66,20 @@ MonoBehaviour:
         m_Value: Assets/ServerData/[BuildTarget]
       - m_Id: c8f4b96698df8a04c96255cd7bfe7ae9
         m_Value: http://localhost/[BuildTarget]
+    - m_InheritedParent: 
+      m_Id: fa46ca13bae5c314aa9972907181f5c6
+      m_ProfileName: MD5Check
+      m_Values:
+      - m_Id: 184b3382cbd388642b0a07f54f396075
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 928a37f901b6de043974b4d07eb0aecb
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: ec822be0873735d4d85523c0288e19dc
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 2efa7e700bfa5324f95861029c1de713
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: c8f4b96698df8a04c96255cd7bfe7ae9
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
     m_ProfileEntryNames:
     - m_Id: 184b3382cbd388642b0a07f54f396075
       m_Name: BuildTarget

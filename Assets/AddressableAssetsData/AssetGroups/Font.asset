@@ -15,20 +15,18 @@ MonoBehaviour:
   m_GroupName: Font
   m_Data:
     m_SerializedData: []
-  m_GUID: bbd5e56cb810d324eb1fa177ba4e4341
+  m_GUID: 2e707ffda49ea1147a27fc28f7275fc9
   m_SerializeEntries:
   - m_GUID: 67333bc88384fc74381521a144a07b12
     m_Address: SourceHanSansCN-Regular
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9659e1457a3a48647b253ecb0017b27b, type: 2}
-    - {fileID: 11400000, guid: 8f5cef381d2dff54696533ef75d9e32a, type: 2}
+    - {fileID: 11400000, guid: 2727004cc41c394478cfb57dc4fb3c4f, type: 2}
+    - {fileID: 11400000, guid: d985c986aac86a945a41000acd9ba9b6, type: 2}

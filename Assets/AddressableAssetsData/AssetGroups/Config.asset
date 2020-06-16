@@ -15,20 +15,18 @@ MonoBehaviour:
   m_GroupName: Config
   m_Data:
     m_SerializedData: []
-  m_GUID: add94bd3a3021e54da30f865f0e75ac2
+  m_GUID: eed0c72f4a6fe3846a51fcbf8858b7d6
   m_SerializeEntries:
   - m_GUID: 349fa23c44e68a64d9d9f497713bb5aa
     m_Address: Config
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3160322de32221e41909f72cc215b36e, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 510218eb61ea9cd4d83b7744cf624d1d, type: 2}
-    - {fileID: 11400000, guid: f922cfc2e89069b42b5a742575b73e3b, type: 2}
+    - {fileID: 11400000, guid: 8dcd7f4c0c67c1c4fb66be135ca2cd85, type: 2}
+    - {fileID: 11400000, guid: e69b5b635bd752b40bb02fb65f7f2333, type: 2}

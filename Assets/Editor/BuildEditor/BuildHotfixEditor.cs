@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using ETModel;
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
 using wxb.Editor;
 
 namespace ETEditor
@@ -23,7 +25,9 @@ namespace ETEditor
         [MenuItem("XIL/Dll生成 &s")]
         public static void Reflash()
         {
-            File.Copy(Path.Combine(ScriptAssembliesDir, HotfixDll), Path.Combine(CodeDir, "DyncDll.dll.bytes"), true);
+            AddressableAssetSettings settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>($"{AddressableAssetSettingsDefaultObject.kDefaultConfigFolder}/{AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName}.asset");
+
+             File.Copy(Path.Combine(ScriptAssembliesDir, HotfixDll), Path.Combine(CodeDir, "DyncDll.dll.bytes"), true);
             File.Copy(Path.Combine(ScriptAssembliesDir, HotfixPdb), Path.Combine(CodeDir, "DyncDll.pdb.bytes"), true);
             Hotfix.Inject();
             UnityEngine.Debug.Log($"复制Hotfix.dll, Hotfix.pdb到Res/Code完成");
