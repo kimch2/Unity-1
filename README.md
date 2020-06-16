@@ -36,7 +36,7 @@
 
 1. 将资源文件放入AddressableAssets下
 
-   ![15](C:\Users\jinsong.JINGGE\Desktop\15.png)
+   ![avatar](http://139.196.233.153/Picture/15.png)
 
 2. 打开Group 点击Build里的CreateAuto 他会自动生成对应的AssetGroups 
 
