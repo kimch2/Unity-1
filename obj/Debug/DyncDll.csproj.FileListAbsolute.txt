@@ -8,13 +8,10 @@ G:\ET-master-JS-Demo\Unity\bin\Debug\UnityEngine.InputModule.dll
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.ResourceManager.dll
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.ThirdParty.dll
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.Addressables.dll
-G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.Analytics.DataPrivacy.pdb
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.Model.pdb
-G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.TextMeshPro.pdb
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.ResourceManager.pdb
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.ThirdParty.pdb
 G:\ET-master-JS-Demo\Unity\bin\Debug\Unity.Addressables.pdb
 G:\ET-master-JS-Demo\Unity\obj\Debug\DyncDll.csproj.CopyComplete
 G:\ET-master-JS-Demo\Unity\obj\Debug\DyncDll.dll
 G:\ET-master-JS-Demo\Unity\obj\Debug\DyncDll.pdb
-G:\ET-master-JS-Demo\Unity\obj\Debug\DyncDll.csprojAssemblyReference.cache

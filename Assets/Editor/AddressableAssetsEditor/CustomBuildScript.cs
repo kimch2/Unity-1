@@ -22,13 +22,16 @@ namespace ETModel
         {
             if (Directory.Exists(ETModel.PathHelper.RemoteBuildPath))
                 FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
+            if (Directory.Exists(ETModel.PathHelper.BuildPath))
+                FileHelper.CleanDirectory(ETModel.PathHelper.BuildPath);
             var result = base.DoBuild<TResult>(builderInput, aaContext);
             var filepath = ETModel.PathHelper.RemoteBuildPath;
             BuildVerison(filepath);
+            FileHelper.CopyDirectory(PathHelper.RemoteBuildPath, PathHelper.BuildPath);
             return result;
         }
   
-         public   void BuildVerison(string dir)
+         public void BuildVerison(string dir)
          {
            VersionConfig versionProto = new VersionConfig();
             GenerateVersionProto(dir, versionProto, "");

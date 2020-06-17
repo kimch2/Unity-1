@@ -24,8 +24,7 @@ namespace ETModel
  
          void Start()
         {
- 
-            ConfirmBtn.onClick.AddListener(DownLoadBundle);
+             ConfirmBtn.onClick.AddListener(DownLoadBundle);
              CheckDownLoadSize();
         }
 
@@ -44,9 +43,8 @@ namespace ETModel
             else
             {
                 Info.text = "无需更新.......";
-                var bundle = AssetBundle.LoadFromFileAsync(scenepath);
                  gameObject.SetActive(false);
-                 InitScript.StartAsync();
+                InitScript.StartAsync();
             }
         }
 
@@ -234,8 +232,7 @@ namespace ETModel
         {
             DownloadAsync();
         }
-        private string scenepath = PathHelper.SavePath+"scene";
-
+ 
         private float time;
         private ulong lastByte;
         private string speed;
@@ -264,8 +261,7 @@ namespace ETModel
                         {
                             fs.Write(remoteVersionConfigData, 0, remoteVersionConfigData.Length);
                         }
-                        var bundle = AssetBundle.LoadFromFileAsync(scenepath);
-                        InitScript.StartAsync();
+                         InitScript.StartAsync();
                         gameObject.SetActive(false);
                     }
                 }

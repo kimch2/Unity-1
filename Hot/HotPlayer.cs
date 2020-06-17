@@ -22,7 +22,7 @@ namespace hot
         {
              if (Input.GetMouseButton(0))
             {
-                 player.GetComponent<MeshRenderer>().material.color = Color.blue;
+                 player.GetComponent<MeshRenderer>().material.color = Color.black;
                 player.transform.position += new Vector3(Input.GetAxis("Mouse X")*0.1F,Input.GetAxis("Mouse Y")*0.1F,0);
             }
             if (Input.GetMouseButtonUp(0) )
@@ -33,7 +33,7 @@ namespace hot
 
         public  static void Init()
         { 
-           GameObject.Find("Cube").GetComponent<MeshRenderer>().material.color = Color.red;
+           GameObject.Find("Cube").GetComponent<MeshRenderer>().material.color = Color.black;
 
         }
 

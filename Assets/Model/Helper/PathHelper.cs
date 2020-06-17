@@ -6,22 +6,20 @@ namespace ETModel
     {
 
 #if UNITY_ANDROID
-        public static string RemoteLoadPath = "http://songsongbeibei.com/StreamingAssets/Unity/Android";
-        public static string RemoteBuildPath = "Assets/ServerData/Android";
-        public static string SavePath = Application.streamingAssetsPath + "/Android/";
+        public static string RemoteLoadPath = "http://139.196.233.153/Unity/Android";
+        public static string BuildPath = "Assets/ServerData/Android";
 #endif
-
 #if UNITY_IPHONE
-        public static string RemoteLoadPath = "http://songsongbeibei.com/StreamingAssets/Unity/IOS";
-        public static string RemoteBuildPath ="Assets/ServerData/IOS";
-        public static string SavePath =Application.streamingAssetsPath+ "/IOS";
+        public static string RemoteLoadPath = "http://139.196.233.153/Unity/IOS";
+        public static string BuildPath = "Assets/ServerData/IOS";
 #endif
 
 #if UNITY_STANDALONE_WIN
-        public static string RemoteLoadPath = "http://songsongbeibei.com/StreamingAssets/Unity/StandaloneWindows64";
-        public static string RemoteBuildPath = "Assets/ServerData/StandaloneWindows64";
-        public static string SavePath =  Application.streamingAssetsPath+ "/StandaloneWindows64";
+        public static string RemoteLoadPath = "http://139.196.233.153/Unity/StandaloneWindows64";
+        public static string BuildPath = "Assets/ServerData/StandaloneWindows64";
 #endif
+        public static string RemoteBuildPath => UnityEngine.AddressableAssets.Addressables.BuildPath;
+        public static string SavePath => UnityEngine.AddressableAssets.Addressables.RuntimePath;
 
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace ETModel
             }
 
         }
-  
+
         /// <summary>
         /// 应用程序内部资源路径存放路径
         /// </summary>

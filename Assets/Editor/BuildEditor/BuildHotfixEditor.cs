@@ -26,6 +26,9 @@ namespace ETEditor
         public static void Reflash()
         {
             AddressableAssetSettings settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>($"{AddressableAssetSettingsDefaultObject.kDefaultConfigFolder}/{AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName}.asset");
+            UnityEngine.Debug.Log(UnityEngine.AddressableAssets.Addressables.PlayerBuildDataPath);
+            UnityEngine.Debug.Log(settings.RemoteCatalogLoadPath.GetValue(settings));
+             
 
              File.Copy(Path.Combine(ScriptAssembliesDir, HotfixDll), Path.Combine(CodeDir, "DyncDll.dll.bytes"), true);
             File.Copy(Path.Combine(ScriptAssembliesDir, HotfixPdb), Path.Combine(CodeDir, "DyncDll.pdb.bytes"), true);

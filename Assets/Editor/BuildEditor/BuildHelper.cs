@@ -67,9 +67,5 @@ namespace ETEditor
 				Log.Info("完成exe打包");
 			}
 		}
-
-		 
-
-	 
-	}
+ 	}
 }

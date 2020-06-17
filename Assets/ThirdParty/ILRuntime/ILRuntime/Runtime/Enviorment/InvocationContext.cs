@@ -149,6 +149,8 @@ namespace ILRuntime.Runtime.Enviorment
             {
                 if (type == typeof(int))
                     return InvocationTypes.Integer;
+                if (type == typeof(System.IntPtr))
+                    return InvocationTypes.Integer;
                 if (type == typeof(short))
                     return InvocationTypes.Integer;
                 if (type == typeof(bool))
