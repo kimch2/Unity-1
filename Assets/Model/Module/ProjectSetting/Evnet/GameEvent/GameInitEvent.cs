@@ -17,15 +17,15 @@ namespace ETModel
         {
             try
             {
- 
-                //await Game.Scene.AddComponent<LogComponent>().LoadAsync();
+                 //await Game.Scene.AddComponent<LogComponent>().LoadAsync();
                 Game.Scene.AddComponent<TimerComponent>();
                 Game.Scene.AddComponent<UnityGameObjectComponent>();
                 //Game.Scene.AddComponent<GlobalConfigComponent>();
                 //Game.Scene.AddComponent<NetOuterComponent>();
+                Game.Scene.AddComponent<ResourcesComponent>();
 
                 Game.Scene.AddComponent<InputComponent>();
-                //Game.Scene.AddComponent<MainCameraComponent>();
+                Game.Scene.AddComponent<MainCameraComponent>();
                 Game.Scene.AddComponent<UIComponent>();
                 Game.Scene.AddComponent<LaunchComponent>();
 
@@ -41,7 +41,12 @@ namespace ETModel
                  }
                 //Game.Scene.AddComponent<OpcodeTypeComponent>();
                 //Game.Scene.AddComponent<MessageDispatcherComponent>();
- 
+                //Game.EventSystem.Run(EventIdType.TestHotfixSubscribMonoEvent, "TestHotfixSubscribMonoEvent");
+
+                //Game.Hotfix.GotoHotfix();
+
+                //Game.EventSystem.Run(EventIdType.TestHotfixSubscribMonoEvent, "TestHotfixSubscribMonoEvent");
+
                 Game.Scene.RemoveComponent<LaunchComponent>();
                 //声音组件
                 Game.Scene.AddComponent<AudioComponent>();

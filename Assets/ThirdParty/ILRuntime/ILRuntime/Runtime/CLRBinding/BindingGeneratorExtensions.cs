@@ -1,5 +1,4 @@
-﻿#if USE_HOT && UNITY_EDITOR
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
@@ -21,22 +20,6 @@ namespace ILRuntime.Runtime.CLRBinding
             }
             if (i.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
                 return true;
-
-            if (IsHasAttribute(i, "EditorField"))
-                return true;
-
-            return false;
-        }
-
-        static bool IsHasAttribute(ICustomAttributeProvider i, string attType)
-        {
-            object[] atts = i.GetCustomAttributes(true);
-            for (int m = 0; m < atts.Length; ++m)
-            {
-                if (atts[m].GetType().FullName.Contains(attType))
-                    return true;
-            }
-
             return false;
         }
 
@@ -79,238 +62,15 @@ namespace ILRuntime.Runtime.CLRBinding
                     }
                     if (prop.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
                         return true;
-
-                    if (IsHasAttribute(prop, "EditorField"))
-                        return true;
                 }
             }
-
             if (i.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
                 return true;
-
-            if (IsHasAttribute(i, "EditorField"))
-                return true;
-
             foreach (var j in param)
             {
-                if (j.ParameterType.IsPointer || j.ParameterType == typeof(IntPtr) || j.ParameterType == typeof(System.TypedReference))
+                if (j.ParameterType.IsPointer)
                     return true;
             }
-
-            if (i is MethodInfo)
-            {
-                var returnType = ((MethodInfo)i).ReturnType;
-                if (returnType.IsPointer || returnType == typeof(IntPtr) || returnType == typeof(System.TypedReference))
-                    return true;
-            }
-
-            if (type == typeof(UnityEngine.Input))
-            {
-                switch (i.Name)
-                {
-                case "IsJoystickPreconfigured":
-                    return true;
-                }
-            }
-
-            if (type == typeof(UnityEngine.MeshRenderer))
-            {
-                switch (i.Name)
-                {
-                case "set_receiveGI":
-                case "get_receiveGI":
-                    return true;
-                }
-            }
-
-            if (type == typeof(UnityEngine.QualitySettings))
-            {
-                switch (i.Name)
-                {
-                case "set_streamingMipmapsRenderersPerFrame":
-                case "get_streamingMipmapsRenderersPerFrame":
-                    return true;
-                }
-            }
-
-            if (type == typeof(UnityEngine.Texture))
-            {
-                switch (i.Name)
-                {
-                case "get_imageContentsHash":
-                case "set_imageContentsHash":
-                    return true;
-                }
-            }
-
-            if (type == typeof(UnityEngine.Texture2D))
-            {
-                switch (i.Name)
-                {
-                case "get_alphaIsTransparency":
-                case "set_alphaIsTransparency":
-                case "get_imageContentsHash":
-                case "set_imageContentsHash":
-                    return true;
-                }
-            }
-
-            if (type == typeof(System.Text.RegularExpressions.Group) && i.Name == "get_Name")
-                return true;
-
-            if (type == typeof(System.Text.RegularExpressions.Regex))
-            {
-                switch (i.Name)
-                {
-                case "CompileToAssembly":
-                case "CustomAttributeBuilder":
-                case "RegexCompilationInfo":
-                    return true;
-                }
-            }
-
-            if (type == typeof(Type) && i.Name == "get_IsSZArray")
-                return true;
-
-            switch (i.Name)
-            {
-            case "get_runInEditMode":
-            case "set_runInEditMode":
-            case "op_UnaryPlus":
-            case "OnRebuildRequested":
-                return true;
-            }
-
-            if (type == typeof(float))
-            {
-                if (i.Name == "IsFinite")
-                    return true;
-            }
-
-            if (type.FullName.StartsWith("System.Collections.Generic.HashSet`1["))
-            {
-                switch (i.Name)
-                {
-                case "TryGetValue":
-                    return true;
-                case ".ctor":
-                    {
-                        if (i is ConstructorInfo)
-                        {
-                            var p = i.GetParameters();
-                            if ((p.Length == 1 || p.Length == 2) && (p[0].ParameterType == typeof(int) || p[0].ParameterType.FullName.StartsWith("System.Collections.Generic.IEnumerable`1")))
-                                return true;
-                        }
-                    }
-                    break;
-                }
-            }
-
-            if (type == typeof(System.IO.Directory))
-            {
-                switch (i.Name)
-                {
-                case "CreateDirectory":
-                    {
-                        if (i.GetParameters().Length >= 2)
-                            return true;
-                    }
-                    break;
-                case "SetAccessControl":
-                case "GetAccessControl":
-                    return true;
-                }
-            }
-
-            if (type == typeof(System.IO.File))
-            {
-                switch (i.Name)
-                {
-                case "Create":
-                    {
-                        if (i.GetParameters().Length >= 3)
-                            return true;
-                    }
-                    break;
-                case "SetAccessControl":
-                case "GetAccessControl":
-                    return true;
-                }
-            }
-
-            if (type == typeof(System.IO.Stream))
-            {
-                switch (i.Name)
-                {
-                case "Read":
-                case "Write":
-                    {
-                        var ps = i.GetParameters();
-                        if (ps.Length == 1 &&
-                            (ps[0].ParameterType.FullName.StartsWith("System.ReadOnlySpan") ||
-                            ps[0].ParameterType.FullName.StartsWith("System.Span"))
-                            )
-                            return true;
-                    }
-                    break;
-                case "ReadAsync":
-                case "WriteAsync":
-                    {
-                        var ps = i.GetParameters();
-                        if (ps.Length == 2 && (
-                            ps[0].ParameterType.FullName.StartsWith("Memory.ReadOnlySpan") ||
-                            ps[0].ParameterType.FullName.StartsWith("System.ReadOnlyMemory") ||
-                            ps[0].ParameterType.FullName.StartsWith("System.Memory")))
-                            return true;
-                    }
-                    break;
-                }
-            }
-
-            if (type.FullName.StartsWith("System.Collections.Generic.HashSet`1["))
-            {
-                switch (i.Name)
-                {
-                case "TryGetValue":
-                    return true;
-                case ".ctor":
-                    {
-                        if (i is ConstructorInfo)
-                        {
-                            var p = i.GetParameters();
-                            if ((p.Length == 1 || p.Length == 2) && (p[0].ParameterType == typeof(int) || p[0].ParameterType.FullName.StartsWith("System.Collections.Generic.IEnumerable`1")))
-                                return true;
-                        }
-                    }
-                    break;
-                }
-            }
-
-            if (type.FullName.StartsWith("System.Collections.Generic.Dictionary`2[["))
-            {
-                switch (i.Name)
-                {
-                case "Remove":
-                    {
-                        if (i.GetParameters().Length == 2)
-                            return true;
-                    }
-                    break;
-                case "TryAdd":
-                    return true;
-                case ".ctor":
-                    {
-                        if (i is ConstructorInfo)
-                        {
-                            var p = i.GetParameters();
-                            if ((p.Length == 1 || p.Length == 2) && p[0].ParameterType.FullName.StartsWith("System.Collections.Generic.IEnumerable`1["))
-                                return true;
-                        }                        
-                    }
-                    break;
-                }
-            }
-
             return false;
         }
 
@@ -337,95 +97,6 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     sb.Append("@");
                     sb.Append(j.Name);
-                }
-            }
-        }
-
-        internal static void AppendArgumentCode(this Type p, StringBuilder sb, int idx, string name, List<Type> valueTypeBinders, bool isMultiArr, bool hasByRef, bool needFree)
-        {
-            string clsName, realClsName;
-            bool isByRef;
-            p.GetClassName(out clsName, out realClsName, out isByRef);
-            var pt = p.IsByRef ? p.GetElementType() : p;
-            string shouldFreeParam = hasByRef ? "false" : "true";
-
-            if (pt.IsValueType && !pt.IsPrimitive && valueTypeBinders != null && valueTypeBinders.Contains(pt))
-            {
-                if (isMultiArr)
-                    sb.AppendLine(string.Format("            {0} a{1} = new {0}();", realClsName, idx));
-                else
-                    sb.AppendLine(string.Format("            {0} @{1} = new {0}();", realClsName, name));
-
-                sb.AppendLine(string.Format("            if (ILRuntime.Runtime.Generated.CLRBindings.s_{0}_Binder != null) {{", clsName));
-
-                if (isMultiArr)
-                    sb.AppendLine(string.Format("                ILRuntime.Runtime.Generated.CLRBindings.s_{1}_Binder.ParseValue(ref a{0}, __intp, ptr_of_this_method, __mStack, {2});", idx, clsName, shouldFreeParam));
-                else
-                    sb.AppendLine(string.Format("                ILRuntime.Runtime.Generated.CLRBindings.s_{1}_Binder.ParseValue(ref @{0}, __intp, ptr_of_this_method, __mStack, {2});", name, clsName, shouldFreeParam));
-
-                sb.AppendLine("            } else {");
-
-                if (isByRef)
-                    sb.AppendLine("                ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);");
-                if (isMultiArr)
-                    sb.AppendLine(string.Format("                a{0} = {1};", idx, p.GetRetrieveValueCode(realClsName)));
-                else
-                    sb.AppendLine(string.Format("                @{0} = {1};", name, p.GetRetrieveValueCode(realClsName)));
-                if (!hasByRef && needFree)
-                    sb.AppendLine("                __intp.Free(ptr_of_this_method);");
-
-                sb.AppendLine("            }");
-            }
-            else
-            {
-                if (isByRef)
-                {
-                    if (p.GetElementType().IsPrimitive)
-                    {
-                        if (pt == typeof(int) || pt == typeof(uint) || pt == typeof(short) || pt == typeof(ushort) || pt == typeof(byte) || pt == typeof(sbyte) || pt == typeof(char))
-                        {
-                            if (pt == typeof(int))
-                                sb.AppendLine(string.Format("            {0} @{1} = __intp.RetriveInt32(ptr_of_this_method, __mStack);", realClsName, name));
-                            else
-                                sb.AppendLine(string.Format("            {0} @{1} = ({0})__intp.RetriveInt32(ptr_of_this_method, __mStack);", realClsName, name));
-                        }
-                        else if (pt == typeof(long) || pt == typeof(ulong))
-                        {
-                            if (pt == typeof(long))
-                                sb.AppendLine(string.Format("            {0} @{1} = __intp.RetriveInt64(ptr_of_this_method, __mStack);", realClsName, name));
-                            else
-                                sb.AppendLine(string.Format("            {0} @{1} = ({0})__intp.RetriveInt64(ptr_of_this_method, __mStack);", realClsName, name));
-                        }
-                        else if (pt == typeof(float))
-                        {
-                            sb.AppendLine(string.Format("            {0} @{1} = __intp.RetriveFloat(ptr_of_this_method, __mStack);", realClsName, name));
-                        }
-                        else if (pt == typeof(double))
-                        {
-                            sb.AppendLine(string.Format("            {0} @{1} = __intp.RetriveDouble(ptr_of_this_method, __mStack);", realClsName, name));
-                        }
-                        else if (pt == typeof(bool))
-                        {
-                            sb.AppendLine(string.Format("            {0} @{1} = __intp.RetriveInt32(ptr_of_this_method, __mStack) == 1;", realClsName, name));
-                        }
-                        else
-                            throw new NotSupportedException();
-                    }
-                    else
-                    {
-                        sb.AppendLine(string.Format("            {0} @{1} = ({0})typeof({0}).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack));", realClsName, name));
-                    }
-
-                }
-                else
-                {
-                    if (isMultiArr)
-                        sb.AppendLine(string.Format("            {0} a{1} = {2};", realClsName, idx, p.GetRetrieveValueCode(realClsName)));
-                    else
-                        sb.AppendLine(string.Format("            {0} @{1} = {2};", realClsName, name, p.GetRetrieveValueCode(realClsName)));
-                    if (!hasByRef && !p.IsPrimitive && needFree)
-                        sb.AppendLine("            __intp.Free(ptr_of_this_method);");
-
                 }
             }
         }
@@ -743,5 +414,3 @@ namespace ILRuntime.Runtime.CLRBinding
         }
     }
 }
-
-#endif

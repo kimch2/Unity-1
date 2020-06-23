@@ -1,5 +1,4 @@
-﻿#if USE_HOT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -251,11 +250,6 @@ namespace ILRuntime.Reflection
             return et.GetGenericTypeDefinition();
         }
 
-        public override Type[] GetGenericArguments()
-        {
-            return et.GetGenericArguments();
-        }
-
         public override bool IsGenericParameter
         {
             get
@@ -289,5 +283,3 @@ namespace ILRuntime.Reflection
         }
     }
 }
-
-#endif

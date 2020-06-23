@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 819917496
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2b0f29e4c0b108124e5164c9455c3719
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ddd8b6abb02e62b03cb3153a9abf4458
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+Assets:
+- Assets/AddressableAssets/Font/Tmp/Arial.asset
+- Assets/AddressableAssets/Font/SourceHanSansCN-Bold_org.otf
+- Assets/AddressableAssets/Font/Tmp/SourceHanSansCN-Regular.asset
+- Assets/AddressableAssets/Font/SourceHanSansCN-Regular_org.otf
+- Assets/AddressableAssets/Font/Tmp/SourceHanSansCN-Bold.asset
+- Assets/AddressableAssets/Font/SourceHanSansCN-Medium_org.otf
+- Assets/AddressableAssets/Font/DS-DIGIB.TTF
+- Assets/AddressableAssets/Font/Tmp/DS-DIGIB SDF.asset
+- Assets/AddressableAssets/Font/SourceHanSansCN-Normal_org.otf
+Dependencies: []

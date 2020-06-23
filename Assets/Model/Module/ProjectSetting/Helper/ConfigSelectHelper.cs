@@ -10,6 +10,19 @@ using UnityEngine.UI;
 
 public static class ConfigHelper 
 {
+    public static string GetText(string key)
+    {
+        try
+        {
+            GameObject config = (GameObject)Game.Scene.GetComponent<ResourcesComponent>().GetAsset("config.unity3d", "Config");
+            string configStr = config.Get<TextAsset>(key).text;
+            return configStr;
+        }
+        catch (Exception e)
+        {
+            throw new Exception($"load config file fail, key: {key}", e);
+        }
+    }
     public static List<string> GetListByProporty<T>(string proporty) where T: IConfig
     {
         var alldata=  Game.Scene.GetComponent<AddressableConfigComponent>().GetAll<T>();
@@ -68,7 +81,10 @@ public static class ConfigHelper
         }
         return result;
     }
-
+    public static T ToObject<T>(string str)
+    {
+        return JsonHelper.FromJson<T>(str);
+    }
 
     public static void SetSpriteByLoadAsset(Image image,string assetName)
     {

@@ -65,11 +65,8 @@ namespace ETEditor
 			this.buildAssetBundleOptions = (BuildAssetBundleOptions)EditorGUILayout.EnumFlagsField("BuildAssetBundleOptions(可多选): ", this.buildAssetBundleOptions);
 
 			if (GUILayout.Button("开始打包"))
-            {
-                this.ShowNotification(new GUIContent("请使用打包工具V2.0"));
-                return;
-
-                if (this.platformType == PlatformType.None)
+			{
+				if (this.platformType == PlatformType.None)
 				{
 					Log.Error("请选择打包平台!");
 					return;

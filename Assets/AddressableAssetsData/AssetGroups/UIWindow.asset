@@ -15,24 +15,24 @@ MonoBehaviour:
   m_GroupName: UIWindow
   m_Data:
     m_SerializedData: []
-  m_GUID: 841ff4b332d5f904aadc0d9f09964146
+  m_GUID: 83a7fefbf952bed4bb7feffad19d093f
   m_SerializeEntries:
   - m_GUID: 1436be5265c04aa4fbe860fd9d23ccde
-    m_Address: UIStartWindow
+    m_Address: Platform_UIStartWindow
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 1c5571c49e6258c41953edb049b48c14
-    m_Address: UILoginWindow
+    m_Address: Platform_UILoginWindow
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: a38e97e47d8550e4c9d7e0b43c6584a2
-    m_Address: UIBackGroundWindow
+    m_Address: Platform_UIBackGroundWindow
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

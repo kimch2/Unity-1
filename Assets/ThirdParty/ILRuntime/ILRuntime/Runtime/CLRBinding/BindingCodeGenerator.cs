@@ -1,5 +1,4 @@
-﻿#if USE_HOT && UNITY_EDITOR
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
@@ -12,18 +11,18 @@ namespace ILRuntime.Runtime.CLRBinding
 {
     public class BindingCodeGenerator
     {
-
-        public static void GenerateBindingCode(List<Type> types, string outputPath,
-                                               HashSet<MethodBase> excludeMethods = null, HashSet<FieldInfo> excludeFields = null,
+        
+        public static void GenerateBindingCode(List<Type> types, string outputPath, 
+                                               HashSet<MethodBase> excludeMethods = null, HashSet<FieldInfo> excludeFields = null, 
                                                List<Type> valueTypeBinders = null, List<Type> delegateTypes = null)
         {
             if (!System.IO.Directory.Exists(outputPath))
                 System.IO.Directory.CreateDirectory(outputPath);
-            //string[] oldFiles = System.IO.Directory.GetFiles(outputPath, "*.cs");
-            //foreach (var i in oldFiles)
-            //{
-            //    System.IO.File.Delete(i);
-            //}
+            string[] oldFiles = System.IO.Directory.GetFiles(outputPath, "*.cs");
+            foreach (var i in oldFiles)
+            {
+                System.IO.File.Delete(i);
+            }
 
             List<string> clsNames = new List<string>();
 
@@ -35,16 +34,15 @@ namespace ILRuntime.Runtime.CLRBinding
                     continue;
                 i.GetClassName(out clsName, out realClsName, out isByRef);
                 clsNames.Add(clsName);
-
+                
                 using (System.IO.StreamWriter sw = new System.IO.StreamWriter(outputPath + "/" + clsName + ".cs", false, new UTF8Encoding(false)))
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append(@"#if USE_HOT
-using System;
+                    sb.Append(@"using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Linq;
+
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
 using ILRuntime.Runtime.Enviorment;
@@ -79,7 +77,7 @@ namespace ILRuntime.Runtime.Generated
                     ConstructorInfo[] ctors = i.GetConstructors(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly);
                     string ctorRegisterCode = i.GenerateConstructorRegisterCode(ctors, excludeMethods);
                     string methodWraperCode = i.GenerateMethodWraperCode(methods, realClsName, excludeMethods, valueTypeBinders, null);
-                    string fieldWraperCode = i.GenerateFieldWraperCode(fields, realClsName, excludeFields, valueTypeBinders, null);
+                    string fieldWraperCode = i.GenerateFieldWraperCode(fields, realClsName, excludeFields);
                     string cloneWraperCode = i.GenerateCloneWraperCode(fields, realClsName);
                     string ctorWraperCode = i.GenerateConstructorWraperCode(ctors, realClsName, excludeMethods, valueTypeBinders);
 
@@ -118,7 +116,6 @@ namespace ILRuntime.Runtime.Generated
                     sb.AppendLine(ctorWraperCode);
                     sb.AppendLine("    }");
                     sb.AppendLine("}");
-                    sb.AppendLine("#endif");
 
                     sw.Write(Regex.Replace(sb.ToString(), "(?<!\r)\n", "\r\n"));
                     sw.Flush();
@@ -158,7 +155,7 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        public static void GenerateBindingCode(ILRuntime.Runtime.Enviorment.AppDomain domain, string outputPath,
+        public static void GenerateBindingCode(ILRuntime.Runtime.Enviorment.AppDomain domain, string outputPath, 
                                                List<Type> valueTypeBinders = null, List<Type> delegateTypes = null)
         {
             if (domain == null)
@@ -199,28 +196,19 @@ namespace ILRuntime.Runtime.Generated
                 if (clsNames.Contains(clsName))
                     clsName = clsName + "_t";
                 clsNames.Add(clsName);
-
-                //File path length limit
-                string oriFileName = outputPath + "/" + clsName;
-                int len = Math.Min(oriFileName.Length, 100);
-                if (len < oriFileName.Length)
-                    oriFileName = oriFileName.Substring(0, len);
-
-                int extraNameIndex = 0;
-                string oFileName = oriFileName;
+                
+                string oFileName = outputPath + "/" + clsName;
+                int len = Math.Min(oFileName.Length, 100);
+                if (len < oFileName.Length)
+                    oFileName = oFileName.Substring(0, len) + "_t";
                 while (files.Contains(oFileName))
-                {
-                    extraNameIndex++;
-                    oFileName = oriFileName + "_t" + extraNameIndex;
-                }
-
+                    oFileName = oFileName + "_t";
                 files.Add(oFileName);
                 oFileName = oFileName + ".cs";
                 using (System.IO.StreamWriter sw = new System.IO.StreamWriter(oFileName, false, new UTF8Encoding(false)))
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append(@"#if USE_HOT
-using System;
+                    sb.Append(@"using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -242,11 +230,11 @@ namespace ILRuntime.Runtime.Generated
         public static void Register(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
 ");
-                    string flagDef = "            BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;";
-                    string methodDef = "            MethodBase method;";
+                    string flagDef =    "            BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;";
+                    string methodDef =  "            MethodBase method;";
                     string methodsDef = "            MethodInfo[] methods = type.GetMethods(flag).Where(t => !t.IsGenericMethod).ToArray();";
-                    string fieldDef = "            FieldInfo field;";
-                    string argsDef = "            Type[] args;";
+                    string fieldDef =   "            FieldInfo field;";
+                    string argsDef =    "            Type[] args;";
                     string typeDef = string.Format("            Type type = typeof({0});", realClsName);
 
                     bool needMethods;
@@ -260,7 +248,7 @@ namespace ILRuntime.Runtime.Generated
                     ConstructorInfo[] ctors = info.Value.Constructors.ToArray();
                     string ctorRegisterCode = i.GenerateConstructorRegisterCode(ctors, excludeMethods);
                     string methodWraperCode = i.GenerateMethodWraperCode(methods, realClsName, excludeMethods, valueTypeBinders, domain);
-                    string fieldWraperCode = fields.Length > 0 ? i.GenerateFieldWraperCode(fields, realClsName, excludeFields, valueTypeBinders, domain) : null;
+                    string fieldWraperCode = fields.Length > 0 ? i.GenerateFieldWraperCode(fields, realClsName, excludeFields) : null;
                     string cloneWraperCode = null;
                     if (info.Value.ValueTypeNeeded)
                     {
@@ -318,8 +306,7 @@ namespace ILRuntime.Runtime.Generated
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(outputPath + "/CLRBindings.cs", false, new UTF8Encoding(false)))
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(@"#if USE_HOT
-using System;
+                sb.AppendLine(@"using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -342,7 +329,6 @@ namespace ILRuntime.Runtime.Generated
                 sb.AppendLine(@"        }
     }
 }");
-                sb.AppendLine(@"#endif");
                 sw.Write(Regex.Replace(sb.ToString(), "(?<!\r)\n", "\r\n"));
             }
 
@@ -432,7 +418,7 @@ namespace ILRuntime.Runtime.Generated
                                     case Intepreter.OpCodes.OpCodeEnum.Stsfld:
                                         {
                                             var t = domain.GetType((int)(ins.TokenLong >> 32)) as CLR.TypeSystem.CLRType;
-                                            if (t != null)
+                                            if(t != null)
                                             {
                                                 var fi = t.GetField((int)ins.TokenLong);
                                                 if (fi != null && fi.IsPublic)
@@ -443,7 +429,7 @@ namespace ILRuntime.Runtime.Generated
                                                         info = CreateNewBindingInfo(t.TypeForCLR);
                                                         infos[t.TypeForCLR] = info;
                                                     }
-                                                    if (ins.Code == Intepreter.OpCodes.OpCodeEnum.Stfld || ins.Code == Intepreter.OpCodes.OpCodeEnum.Stsfld)
+                                                    if(ins.Code == Intepreter.OpCodes.OpCodeEnum.Stfld || ins.Code == Intepreter.OpCodes.OpCodeEnum.Stsfld)
                                                     {
                                                         if (t.IsValueType)
                                                         {
@@ -451,7 +437,8 @@ namespace ILRuntime.Runtime.Generated
                                                             info.DefaultInstanceNeeded = true;
                                                         }
                                                     }
-                                                    info.Fields.Add(fi);
+                                                    if (t.TypeForCLR.CheckCanPinn() || !t.IsValueType)
+                                                        info.Fields.Add(fi);
                                                 }
                                             }
                                         }
@@ -481,7 +468,7 @@ namespace ILRuntime.Runtime.Generated
                                     case Intepreter.OpCodes.OpCodeEnum.Newarr:
                                         {
                                             var t = domain.GetType(ins.TokenInteger) as CLR.TypeSystem.CLRType;
-                                            if (t != null)
+                                            if(t != null)
                                             {
                                                 CLRBindingGenerateInfo info;
                                                 if (!infos.TryGetValue(t.TypeForCLR, out info))
@@ -574,8 +561,7 @@ namespace ILRuntime.Runtime.Generated
                 using (System.IO.StreamWriter sw = new System.IO.StreamWriter(outputPath + "/" + clsName + ".cs", false, new UTF8Encoding(false)))
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append(@"#if USE_HOT
-using System;
+                    sb.Append(@"using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -712,7 +698,6 @@ namespace ILRuntime.Runtime.Generated
                     sb.AppendLine("        }");
                     sb.AppendLine("    }");
                     sb.AppendLine("}");
-                    sb.AppendLine("#endif");
 
                     sw.Write(Regex.Replace(sb.ToString(), "(?<!\r)\n", "\r\n"));
                     sw.Flush();
@@ -726,12 +711,11 @@ namespace ILRuntime.Runtime.Generated
         {
             if (!System.IO.Directory.Exists(outputPath))
                 System.IO.Directory.CreateDirectory(outputPath);
-
+            
             using (System.IO.StreamWriter sw = new System.IO.StreamWriter(outputPath + "/CLRBindings.cs", false, new UTF8Encoding(false)))
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(@"#if USE_HOT
-using System;
+                sb.AppendLine(@"using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -809,12 +793,9 @@ namespace ILRuntime.Runtime.Generated
 
                 sb.AppendLine(@"    }
 }");
-                sb.AppendLine("#endif");
                 sw.Write(Regex.Replace(sb.ToString(), "(?<!\r)\n", "\r\n"));
             }
         }
 
     }
 }
-
-#endif

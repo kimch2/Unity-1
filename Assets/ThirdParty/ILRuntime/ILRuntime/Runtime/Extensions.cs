@@ -1,4 +1,3 @@
-#if USE_HOT
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -274,10 +273,6 @@ namespace ILRuntime.Runtime
             if (param.Length == parameters.Length)
             {
                 var args = m.GetGenericArguments();
-                if (args.Length != genericArguments.Length)
-                {
-                    return false;
-                }
                 if (args.MatchGenericParameters(m.ReturnType, returnType, genericArguments))
                 {
                     for (int i = 0; i < param.Length; i++)
@@ -362,5 +357,3 @@ namespace ILRuntime.Runtime
         }
     }
 }
-
-#endif

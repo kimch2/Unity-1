@@ -15,10 +15,10 @@ MonoBehaviour:
   m_GroupName: Config
   m_Data:
     m_SerializedData: []
-  m_GUID: eed0c72f4a6fe3846a51fcbf8858b7d6
+  m_GUID: c2c1c09a78c6c0a4798fe4b085c7c4d5
   m_SerializeEntries:
   - m_GUID: 349fa23c44e68a64d9d9f497713bb5aa
-    m_Address: Config
+    m_Address: Platform_Config
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

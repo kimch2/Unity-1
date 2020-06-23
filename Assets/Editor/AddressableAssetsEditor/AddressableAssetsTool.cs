@@ -70,6 +70,8 @@ namespace ETEditor
             if (isBuildAssets)
             {
                 FileHelper.CleanDirectory("Assets/ServerData/");
+
+
                 AddressableAssetSettings.CleanPlayerContent();
                 AddressableAssetSettings.BuildPlayerContent();
 
@@ -210,7 +212,8 @@ namespace ETEditor
             }
             sb.AppendLine("\t}");
             sb.AppendLine("}");
+
             File.WriteAllText($"{UnityEngine.Application.dataPath}/Model/Common/Addressables/Address.cs", sb.ToString());
         }
-      }
+     }
 }

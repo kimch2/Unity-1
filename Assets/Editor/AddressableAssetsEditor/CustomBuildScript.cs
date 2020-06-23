@@ -11,29 +11,33 @@ using Sirenix.Serialization;
 using Sirenix.OdinInspector;
 using ETEditor;
 using System.Threading.Tasks;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 namespace ETModel
 {
     [CreateAssetMenu(fileName = "VersionBuilderPacked.asset", menuName = "Addressables/Content Builders/CostomBuild")]
     public class CustomBuildScript : BuildScriptPackedMode
     {
-         public override string Name => "VersionBuilder";
-         protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
+        public override string Name => "VersionBuilder";
+        protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
         {
             if (Directory.Exists(ETModel.PathHelper.RemoteBuildPath))
                 FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
             if (Directory.Exists(ETModel.PathHelper.BuildPath))
                 FileHelper.CleanDirectory(ETModel.PathHelper.BuildPath);
+
+ 
             var result = base.DoBuild<TResult>(builderInput, aaContext);
-            var filepath = ETModel.PathHelper.RemoteBuildPath;
+             var filepath = Path.Combine(UnityEngine.AddressableAssets.Addressables.RuntimePath, Application.productName);
             BuildVerison(filepath);
-            FileHelper.CopyDirectory(PathHelper.RemoteBuildPath, PathHelper.BuildPath);
+            FileHelper.CopyDirectory(UnityEngine.AddressableAssets.Addressables.RuntimePath, PathHelper.BuildPath);
             return result;
         }
-  
-         public void BuildVerison(string dir)
-         {
-           VersionConfig versionProto = new VersionConfig();
+
+
+        public void BuildVerison(string dir)
+        {
+            VersionConfig versionProto = new VersionConfig();
             GenerateVersionProto(dir, versionProto, "");
 
             using (FileStream fileStream = new FileStream($"{dir}/Version.txt", FileMode.Create))
@@ -60,9 +64,9 @@ namespace ETModel
                 });
             }
 
-             foreach (string directory in Directory.GetDirectories(dir))
+            foreach (string directory in Directory.GetDirectories(dir))
             {
-                 DirectoryInfo dinfo = new DirectoryInfo(directory);
+                DirectoryInfo dinfo = new DirectoryInfo(directory);
                 string rel = relativePath == "" ? dinfo.Name : $"{relativePath}/{dinfo.Name}";
                 GenerateVersionProto($"{dir}/{dinfo.Name}", versionProto, rel);
             }

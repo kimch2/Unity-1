@@ -15,10 +15,17 @@ MonoBehaviour:
   m_GroupName: Scene
   m_Data:
     m_SerializedData: []
-  m_GUID: c71145e48553562428443887a06e94d2
+  m_GUID: 7d894c548b6cacb49a03a96added1773
   m_SerializeEntries:
   - m_GUID: 89c686e06714f034b94e72cc92295e37
-    m_Address: MainScene
+    m_Address: Platform_MainScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bb1695f24d618b74d8d8412282e2ffe2
+    m_Address: Platform_Init
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

@@ -15,10 +15,10 @@ MonoBehaviour:
   m_GroupName: ProjectPrefab
   m_Data:
     m_SerializedData: []
-  m_GUID: 6b90db51ce2a3d7498be0a44e3aa9138
+  m_GUID: 9c2f0e5f67f1f4c4094f754405e2fe67
   m_SerializeEntries:
   - m_GUID: b47a8b394f3522741b0343f1125dc17a
-    m_Address: Main Camera
+    m_Address: Platform_Main Camera
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

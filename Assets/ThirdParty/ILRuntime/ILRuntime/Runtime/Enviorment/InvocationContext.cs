@@ -1,5 +1,4 @@
-﻿#if USE_HOT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,18 +86,8 @@ namespace ILRuntime.Runtime.Enviorment
         }
     }
 
-    enum InvocationTypes
-    {
-        Integer,
-        Long,
-        Float,
-        Double,
-        Enum,
-        Object,
-    }
     public unsafe struct InvocationContext : IDisposable
     {
-        StackObject* ebp;
         StackObject* esp;
         AppDomain domain;
         ILIntepreter intp;
@@ -141,59 +130,11 @@ namespace ILRuntime.Runtime.Enviorment
                 defaultConverterIntialized = true;
             }
         }
-
-        internal static InvocationTypes GetInvocationType<T>()
-        {
-            var type = typeof(T);
-            if (type.IsPrimitive)
-            {
-                if (type == typeof(int))
-                    return InvocationTypes.Integer;
-                if (type == typeof(System.IntPtr))
-                    return InvocationTypes.Integer;
-                if (type == typeof(short))
-                    return InvocationTypes.Integer;
-                if (type == typeof(bool))
-                    return InvocationTypes.Integer;
-                if (type == typeof(long))
-                    return InvocationTypes.Long;
-                if (type == typeof(float))
-                    return InvocationTypes.Float;
-                if (type == typeof(double))
-                    return InvocationTypes.Double;
-                if (type == typeof(char))
-                    return InvocationTypes.Integer;
-                if (type == typeof(ushort))
-                    return InvocationTypes.Integer;
-                if (type == typeof(uint))
-                    return InvocationTypes.Integer;
-                if (type == typeof(ulong))
-                    return InvocationTypes.Long;
-                if (type == typeof(byte))
-                    return InvocationTypes.Integer;
-                if (type == typeof(sbyte))
-                    return InvocationTypes.Integer;
-                else
-                    throw new NotImplementedException(string.Format("Not supported type:{0}", type.FullName));
-            }
-            else if (type.IsEnum)
-            {
-                if (PrimitiveConverter<T>.ToInteger != null && PrimitiveConverter<T>.FromInteger != null)
-                    return InvocationTypes.Integer;
-                if (PrimitiveConverter<T>.ToLong != null && PrimitiveConverter<T>.FromLong != null)
-                    return InvocationTypes.Long;
-                return InvocationTypes.Enum;
-            }
-            else
-                return InvocationTypes.Object;
-        }
-
         internal InvocationContext(ILIntepreter intp, ILMethod method)
         {
             var stack = intp.Stack;
             mStack = stack.ManagedStack;
             esp = stack.StackBase;
-            ebp = esp;
             stack.ResetValueTypePointer();
 
             this.domain = intp.AppDomain;
@@ -275,55 +216,6 @@ namespace ILRuntime.Runtime.Enviorment
             paramCnt++;
         }
 
-        public void PushReference(int index)
-        {
-            var dst = ILIntepreter.Add(ebp, index);
-            esp->ObjectType = ObjectTypes.StackObjectReference;
-            *(long*)&esp->Value = (long)dst;
-            esp++;
-        }
-
-        internal void PushParameter<T>(InvocationTypes type, T val)
-        {
-            switch (type)
-            {
-                case InvocationTypes.Integer:
-                    PushInteger(val);
-                    break;
-                case InvocationTypes.Long:
-                    PushLong(val);
-                    break;
-                case InvocationTypes.Float:
-                    PushFloat(val);
-                    break;
-                case InvocationTypes.Double:
-                    PushDouble(val);
-                    break;
-                case InvocationTypes.Enum:
-                    PushObject(val, false);
-                    break;
-                default:
-                    PushObject(val);
-                    break;
-            }
-        }
-
-        internal T ReadResult<T>(InvocationTypes type)
-        {
-            switch (type)
-            {
-                case InvocationTypes.Integer:
-                    return ReadInteger<T>();
-                case InvocationTypes.Long:
-                    return ReadLong<T>();
-                case InvocationTypes.Float:
-                    return ReadFloat<T>();
-                case InvocationTypes.Double:
-                    return ReadDouble<T>();
-                default:
-                    return ReadObject<T>();
-            }
-        }
         public void Invoke()
         {
             if (invocated)
@@ -349,12 +241,6 @@ namespace ILRuntime.Runtime.Enviorment
             CheckReturnValue();
             return esp->Value;
         }
-
-        public int ReadInteger(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
-            return esp->Value;
-        }
         public T ReadInteger<T>()
         {
             return PrimitiveConverter<T>.CheckAndInvokeFromInteger(ReadInteger());
@@ -365,11 +251,7 @@ namespace ILRuntime.Runtime.Enviorment
             CheckReturnValue();
             return *(long*)&esp->Value;
         }
-        public long ReadLong(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
-            return *(long*)&esp->Value;
-        }
+
         public T ReadLong<T>()
         {
             return PrimitiveConverter<T>.CheckAndInvokeFromLong(ReadLong());
@@ -378,12 +260,6 @@ namespace ILRuntime.Runtime.Enviorment
         public float ReadFloat()
         {
             CheckReturnValue();
-            return *(float*)&esp->Value;
-        }
-
-        public float ReadFloat(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
             return *(float*)&esp->Value;
         }
 
@@ -397,11 +273,7 @@ namespace ILRuntime.Runtime.Enviorment
             CheckReturnValue();
             return *(double*)&esp->Value;
         }
-        public double ReaDouble(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
-            return *(double*)&esp->Value;
-        }
+
         public T ReadDouble<T>()
         {
             return PrimitiveConverter<T>.CheckAndInvokeFromDouble(ReadDouble());
@@ -410,11 +282,6 @@ namespace ILRuntime.Runtime.Enviorment
         public bool ReadBool()
         {
             CheckReturnValue();
-            return esp->Value == 1;
-        }
-        public bool ReadBool(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
             return esp->Value == 1;
         }
 
@@ -429,11 +296,6 @@ namespace ILRuntime.Runtime.Enviorment
             CheckReturnValue();
             return type.CheckCLRTypes(StackObject.ToObject(esp, domain, mStack));
         }
-        public T ReadObject<T>(int index)
-        {
-            var esp = ILIntepreter.Add(ebp, index);
-            return (T)typeof(T).CheckCLRTypes(StackObject.ToObject(esp, domain, mStack));
-        }
 
         public void Dispose()
         {
@@ -447,5 +309,3 @@ namespace ILRuntime.Runtime.Enviorment
         }
     }
 }
-
-#endif

@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2018_4_13;UNITY_2018_4;UNITY_2018;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;TMP_PRESENT;ILRuntime;USE_HOT;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2018_4_13;UNITY_2018_4;UNITY_2018;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ASYNC;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;TMP_PRESENT;ILRuntime;USE_HOT;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -138,7 +138,6 @@
     <Compile Include="Assets\Model\Common\AssetsBundle\AssetsBundleComponent.cs" />
     <Compile Include="Assets\Model\Common\AssetsBundle\AssetsBundleLoaderAsync.cs" />
     <Compile Include="Assets\Model\Common\AssetsBundle\AssetsLoaderAsync.cs" />
-    <Compile Include="Assets\Model\Common\AssetsBundle\BundleHelper.cs" />
     <Compile Include="Assets\Model\Common\AssetsBundle\ResourcesComponent.cs" />
     <Compile Include="Assets\Model\Common\AssetsBundle\VersionConfig.cs" />
     <Compile Include="Assets\Model\Common\Await\DotweenTask.cs" />
@@ -156,6 +155,7 @@
     <Compile Include="Assets\Model\Common\Input\InputComponent.cs" />
     <Compile Include="Assets\Model\Common\Launch\LaunchComponent.cs" />
     <Compile Include="Assets\Model\Common\Log\LogComponent.cs" />
+    <Compile Include="Assets\Model\Common\ProjectSelect\ProjectSelectComponent.cs" />
     <Compile Include="Assets\Model\Common\ScriptObject\ComponentManager\ComponentInfo.cs" />
     <Compile Include="Assets\Model\Common\ScriptObject\ComponentManager\ComponentManager.cs" />
     <Compile Include="Assets\Model\Common\ScriptObject\ScriptObjectConfig\AudioConfig\AudioConfig.cs" />
@@ -198,21 +198,25 @@
     <Compile Include="Assets\Model\Component\Config\OuterConfig.cs" />
     <Compile Include="Assets\Model\Component\Config\RunServerConfig.cs" />
     <Compile Include="Assets\Model\Component\Config\StartConfig.cs" />
+    <Compile Include="Assets\Model\Component\GlobalConfigComponent.cs" />
     <Compile Include="Assets\Model\Component\SceneChangeComponent.cs" />
     <Compile Include="Assets\Model\Component\TimerComponent.cs" />
     <Compile Include="Assets\Model\Entity\Game.cs" />
+    <Compile Include="Assets\Model\Entity\Hotfix.cs" />
     <Compile Include="Assets\Model\Entity\Scene.cs" />
     <Compile Include="Assets\Model\Entity\UnityResourceLoadAsync.cs" />
     <Compile Include="Assets\Model\Entity\UnityWebRequestAsync.cs" />
     <Compile Include="Assets\Model\Helper\ActionHelper.cs" />
-    <Compile Include="Assets\Model\Helper\GameObjectHelper.cs" />
+    <Compile Include="Assets\Model\Helper\BundleHelper.cs" />
     <Compile Include="Assets\Model\Helper\ILHelper.cs" />
     <Compile Include="Assets\Model\Helper\PathHelper.cs" />
-    <Compile Include="Assets\Model\Helper\PositionHelper.cs" />
+    <Compile Include="Assets\Model\Helper\ResourcesHelper.cs" />
     <Compile Include="Assets\Model\Helper\ResourcesLoadHelper.cs" />
+    <Compile Include="Assets\Model\ILBinding\CLRBindings.cs" />
     <Compile Include="Assets\Model\Init.cs" />
     <Compile Include="Assets\Model\Module\Actor\IActorMessage.cs" />
     <Compile Include="Assets\Model\Module\ActorLocation\IActorLocationMessage.cs" />
+    <Compile Include="Assets\Model\Module\AssetsBundle\BundleDownloaderComponent.cs" />
     <Compile Include="Assets\Model\Module\Camera\Control\IInputControl.cs" />
     <Compile Include="Assets\Model\Module\Camera\Control\MoveInput.cs" />
     <Compile Include="Assets\Model\Module\Camera\Control\RotateInput.cs" />
@@ -227,10 +231,13 @@
     <Compile Include="Assets\Model\Module\Camera\Event\MoveCameraEvent.cs" />
     <Compile Include="Assets\Model\Module\Camera\Test\MonoTest.cs" />
     <Compile Include="Assets\Model\Module\Camera\Test\Test.cs" />
+    <Compile Include="Assets\Model\Module\Config\ACategory.cs" />
     <Compile Include="Assets\Model\Module\Config\AConfigComponent.cs" />
     <Compile Include="Assets\Model\Module\Config\AddressableCategory.cs" />
     <Compile Include="Assets\Model\Module\Config\AddressableConfigComponent.cs" />
     <Compile Include="Assets\Model\Module\Config\ConfigAttribute.cs" />
+    <Compile Include="Assets\Model\Module\Config\ConfigComponent.cs" />
+    <Compile Include="Assets\Model\Module\Config\ConfigHelper.cs" />
     <Compile Include="Assets\Model\Module\Config\IConfig.cs" />
     <Compile Include="Assets\Model\Module\Demo\Common\UIWindow\UIConfirmWindow\UIConfirmWindowComponent_Generated.cs" />
     <Compile Include="Assets\Model\Module\Demo\Common\UIWindow\UIConfirmWindow\UIConfirmWindowComponent_Logic.cs" />
@@ -467,109 +474,6 @@
     <Compile Include="Assets\Model\Other\MotionType.cs" />
     <Compile Include="Assets\Model\Other\ReferenceCollector.cs" />
     <Compile Include="Assets\Model\Test\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\CLRBindings.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\GenDelegateBridge_pc.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\GenObjects_pc.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\CoroutineAdapter.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\DelegateBridge.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\ILHotfix.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\ObjectArrayPools.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\Objects.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILHotFix\ResLoad.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILRegType_pc.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\ILRuntime_Runtime_Intepreter_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Array_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Byte_Array2_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_ILTypeInstance_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_UInt32_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_Dictionary_2_UInt64_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_HashSet_1_Int32_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_HashSet_1_Int64_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_HashSet_1_String_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Collections_Generic_List_1_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Convert_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_DateTime_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Enum_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Int32_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Int64_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Linq_Enumerable_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Math_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Object_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Reflection_FieldInfo_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Reflection_MethodInfo_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Reflection_PropertyInfo_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Single_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_String_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_RegularExpressions_CaptureCollection_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_RegularExpressions_Group_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_RegularExpressions_GroupCollection_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_RegularExpressions_Match_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_RegularExpressions_Regex_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Text_StringBuilder_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_TimeSpan_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\System_Type_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_AssetBundle_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Camera_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Canvas_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Color_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_EventSystems_UIBehaviour_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_GameObject_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Matrix4x4_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_MonoBehaviour_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Object_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Quaternion_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_RectTransform_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Resources_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Screen_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_SystemInfo_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Texture_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Texture2D_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Time_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Transform_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_UI_Graphic_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_UI_Image_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_UI_LayoutElement_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_UI_Text_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Vector2_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Vector3_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\UnityEngine_Video_VideoPlayer_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_Byte_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_Int32_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_Int64_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_Object_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_Single_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Array_1_String_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_Hotfix_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_hotMgr_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_IL_Help_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_L_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Auto\wxb_RefType_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Player.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Array.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\BehaviourAction.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\CacheType.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Custom\ILLog.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Custom\UnityEngine_Debug_Binding.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\EditorClass.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Help.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\hotMgr.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Log.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\RefOutParam.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\RefType.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\RefType_InvokeMethod.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\ResourcesPath.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\AnyTypeSerialize.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\ArrayAnyType.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\BaseTypeSerialize.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\BaseTypeSerializeArray.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\DllInitByEditor.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\IListAnyType.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\ILMonoBehaviour.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\MonoSerialize.cs" />
-    <Compile Include="Assets\Model\XIL\Scripts\Serialize\WRStream.cs" />
     <None Include="Assets\Model\Module\Pathfinding\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
     <None Include="Assets\Model\Module\Pathfinding\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
     <None Include="Assets\Model\Module\Pathfinding\AstarPathfindingProject\Readme_upgrading.txt" />
@@ -824,15 +728,6 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>G:/ET-master-JS-Demo/Unity/Assets/Editor/Demigiant/DOTween/DOTweenEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoXIL.Cecil">
-      <HintPath>G:/ET-master-JS-Demo/Unity/Assets/Editor/JSEditor/ILHotfix/ILEditor/MonoXIL.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoXIL.Cecil.Mdb">
-      <HintPath>G:/ET-master-JS-Demo/Unity/Assets/Editor/JSEditor/ILHotfix/ILEditor/MonoXIL.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoXIL.Cecil.Pdb">
-      <HintPath>G:/ET-master-JS-Demo/Unity/Assets/Editor/JSEditor/ILHotfix/ILEditor/MonoXIL.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>G:/ET-master-JS-Demo/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>

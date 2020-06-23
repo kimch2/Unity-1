@@ -1,5 +1,4 @@
-﻿
-using LitJson;
+﻿ using LitJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,8 +42,8 @@ namespace ETModel
             else
             {
                 Info.text = "无需更新.......";
-                 gameObject.SetActive(false);
-                InitScript.StartAsync();
+                transform.Find("UpdateWindow").gameObject.SetActive(false);
+                transform.Find("ProjectSelectWindow").gameObject.SetActive(true);
             }
         }
 
@@ -70,7 +69,7 @@ namespace ETModel
                 {
                     return 0;
                 }
-
+ 
                 long alreadyDownloadBytes = 0;
                 foreach (string downloadedBundle in this.downloadedBundles)
                 {
@@ -94,7 +93,7 @@ namespace ETModel
                 using (UnityWebRequestAsync webRequestAsync = ComponentFactory.Create<UnityWebRequestAsync>())
                 {
                     versionUrl = PathHelper.RemoteLoadPath + "/Version.txt";
-                    await webRequestAsync.DownloadAsync(versionUrl);
+                     await webRequestAsync.DownloadAsync(versionUrl);
                     remoteVersionConfigData = webRequestAsync.Request.downloadHandler.data;
                     remoteVersionConfig = JsonHelper.FromJson<VersionConfig>(webRequestAsync.Request.downloadHandler.text);
                 }
@@ -107,14 +106,14 @@ namespace ETModel
             {
                 // 获取streaming目录的Version.txt
                 VersionConfig streamingVersionConfig;
-                string versionPath = PathHelper.SavePath + "Version.txt";
+                string versionPath =Path.Combine( PathHelper.SavePath , "Version.txt");
                 if (File.Exists(versionPath))
                 {
-                    streamingVersionConfig = JsonHelper.FromJson<VersionConfig>(File.ReadAllText(versionPath));
+                     streamingVersionConfig = JsonHelper.FromJson<VersionConfig>(File.ReadAllText(versionPath));
                 }
                 else
                 {
-                    streamingVersionConfig = new VersionConfig();
+                     streamingVersionConfig = new VersionConfig();
                 }
 
                 // 删掉远程不存在的文件
@@ -126,7 +125,7 @@ namespace ETModel
                      foreach (FileInfo fileInfo in fileInfos)
                     {
  
-                         if (remoteVersionConfig.FileInfoDict.ContainsKey(fileInfo.FullName.Substring(directoryFolderLength)))
+                         if (remoteVersionConfig.FileInfoDict.ContainsKey(fileInfo.FullName.Substring(directoryFolderLength).Replace("\\","")))
                         {
                             continue;
                         }
@@ -135,7 +134,7 @@ namespace ETModel
                         {
                             continue;
                         }
-                          fileInfo.Delete();
+                        fileInfo.Delete();
                     }
                 }
                 else
@@ -156,7 +155,9 @@ namespace ETModel
                          continue;
                     }
 
+                    UnityEngine.Debug.LogError(fileVersionInfo.File+ "     "+ fileVersionInfo.Size);
                     this.bundles.Enqueue(fileVersionInfo.File);
+               
                     this.TotalSize += fileVersionInfo.Size;
                 }
             }
@@ -190,10 +191,11 @@ namespace ETModel
                         {
                             using (this.webRequest = ComponentFactory.Create<UnityWebRequestAsync>())
                             {
+                                UnityEngine.Debug.LogError(PathHelper.RemoteLoadPath + "/" + this.downloadingBundle);
                                 await this.webRequest.DownloadAsync(PathHelper.RemoteLoadPath + "/"+ this.downloadingBundle);
                                 byte[] data = this.webRequest.Request.downloadHandler.data;
 
-                                string path = PathHelper.SavePath+ this.downloadingBundle;
+                                string path =Path.Combine( PathHelper.SavePath, this.downloadingBundle);
                                 using (FileStream fs = new FileStream(path, FileMode.Create))
                                 {
                                     fs.Write(data, 0, data.Length);
@@ -203,7 +205,7 @@ namespace ETModel
                                 config.FileInfoDict = hasDonwLoadedFile;
                   
                                 var byteArray = System.Text.Encoding.UTF8.GetBytes(JsonMapper.ToJson(config));
-                                using (FileStream fs = new FileStream(PathHelper.SavePath + "Version.txt", FileMode.Create))
+                                using (FileStream fs = new FileStream(Path.Combine( PathHelper.SavePath , "Version.txt"), FileMode.Create))
                                 {
                                     fs.Write(byteArray, 0, byteArray.Length);
                                 }
@@ -257,12 +259,16 @@ namespace ETModel
                     Progress.text = $"下载中....{ProgressValue}%    速度{speed}";
                     if (ProgressValue == 100)
                     {
-                        using (FileStream fs = new FileStream(PathHelper.SavePath+ "Version.txt", FileMode.Create))
+                        using (FileStream fs = new FileStream(Path.Combine(PathHelper.SavePath, "Version.txt"), FileMode.Create))
                         {
                             fs.Write(remoteVersionConfigData, 0, remoteVersionConfigData.Length);
                         }
-                         InitScript.StartAsync();
-                        gameObject.SetActive(false);
+#if UNITY_EDITOR
+                        FileHelper.CleanDirectory(PathHelper.RemoteBuildPath);
+                        FileHelper.CopyDirectory(PathHelper.BuildPath, PathHelper.RemoteBuildPath);
+#endif
+                        transform.Find("UpdateWindow").gameObject.SetActive(false);
+                        transform.Find("ProjectSelectWindow").gameObject.SetActive(true);
                     }
                 }
             }

@@ -25,12 +25,12 @@ namespace ETModel
 
         protected override TResult DoBuild<TResult>(AddressablesDataBuilderInput builderInput, AddressableAssetsBuildContext aaContext)
         {
-
-            if(Directory.Exists(ETModel.PathHelper.RemoteBuildPath))
+  
+             if (Directory.Exists(ETModel.PathHelper.RemoteBuildPath))
              FileHelper.CleanDirectory(ETModel.PathHelper.RemoteBuildPath);
  
+
             AddressableAssetSettings settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>($"{AddressableAssetSettingsDefaultObject.kDefaultConfigFolder}/{AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName}.asset");
- 
              //更新Group模板的发布路径和加载路径
             UpdateGroupTemplateBuildAndLoadPath(settings, $"{settings.GroupTemplateFolder}/Packed Assets.asset");
             //UpdateGroupBuildAndLoadPath(settings, $"{settings.GroupFolder}/Default Local Group.asset");
@@ -88,7 +88,7 @@ namespace ETModel
                     Log.Info($"Address重复->{address}");
                 }
                 var enity = settings.CreateOrMoveEntry(AssetDatabase.AssetPathToGUID(path), group);
-                enity.SetAddress(address);
+                enity.SetAddress(Application.productName+"_"+ address);
                 enity.SetLabel("default", true);
 
 

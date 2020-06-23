@@ -1,5 +1,4 @@
-﻿#if USE_HOT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -371,7 +370,6 @@ namespace ILRuntime.Runtime.Intepreter
                 if (Type.FirstCLRBaseType != null && Type.FirstCLRBaseType is Enviorment.CrossBindingAdaptor)
                 {
                     CLRType clrType = appdomain.GetType(((Enviorment.CrossBindingAdaptor)Type.FirstCLRBaseType).BaseCLRType) as CLRType;
-                    //if(!clrType.CopyFieldToStack(fieldIdx, clrInstance,))
                     ILIntepreter.PushObject(esp, managedStack, clrType.GetFieldValue(fieldIdx, clrInstance));
                 }
                 else
@@ -624,5 +622,3 @@ namespace ILRuntime.Runtime.Intepreter
         }
     }
 }
-
-#endif

@@ -47,8 +47,8 @@ namespace ETModel
             else
             {
                 Info.text = "无需更新.......";
-                InitScript.StartAsync();
-                gameObject.SetActive(false);
+                //InitScript.StartAsync();
+                //gameObject.SetActive(false);
             }
         }
 
@@ -86,8 +86,8 @@ namespace ETModel
  
             DownLoadSize.text = "下载完成!";
 
-            InitScript.StartAsync();
-            gameObject.SetActive(false);
+            //InitScript.StartAsync();
+            //gameObject.SetActive(false);
 
         }
 

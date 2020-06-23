@@ -15,24 +15,24 @@ MonoBehaviour:
   m_GroupName: Materials
   m_Data:
     m_SerializedData: []
-  m_GUID: 12bc25c05e5a9c14da9e1a4808a119b2
+  m_GUID: fa480143e98400d40bc4d937c46dda5b
   m_SerializeEntries:
   - m_GUID: 677806a886a3a614ba95a23f131b4c83
-    m_Address: UIBlurHQ
+    m_Address: Platform_UIBlurHQ
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: dd8c8a9be4fb5904c8f1e47a56a12a69
-    m_Address: Transparent
+    m_Address: Platform_Transparent
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: fa9724667cfd54b4397b0c249e787b8f
-    m_Address: Extend_Blur_UIBlurHQ
+    m_Address: Platform_Extend_Blur_UIBlurHQ
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

@@ -1,5 +1,4 @@
-﻿#if USE_HOT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -190,8 +189,7 @@ namespace ILRuntime.Runtime.Stack
         public unsafe static void Initialized(StackObject* esp, IType type)
         {
             var t = type.TypeForCLR;
-            
-            if (type.IsPrimitive)
+            if (type.IsPrimitive || type.IsEnum)
             {
                 if (t == typeof(int) || t == typeof(uint) || t == typeof(short) || t == typeof(ushort) || t == typeof(byte) || t == typeof(sbyte) || t == typeof(char) || t == typeof(bool))
                 {
@@ -220,17 +218,6 @@ namespace ILRuntime.Runtime.Stack
                 else
                     throw new NotImplementedException();
             }
-            else if (type.IsEnum)
-            {
-                if(type is ILType ilType)
-                {
-                    Initialized(esp, ilType.FieldTypes[0]);
-                }
-                else
-                {
-                    Initialized(esp, ((CLRType)type).OrderedFieldTypes[0]);
-                }
-            }
             else
             {
                 *esp = Null;
@@ -254,5 +241,3 @@ namespace ILRuntime.Runtime.Stack
         ArrayReference,//Value = objIdx, ValueLow = elemIdx
     }
 }
-
-#endif

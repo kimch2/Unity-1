@@ -15,10 +15,10 @@ MonoBehaviour:
   m_GroupName: HotResources
   m_Data:
     m_SerializedData: []
-  m_GUID: b4f9c92a95600a449957849b204c4a4c
+  m_GUID: 717a87c887d1f34468f1f6b06b544ab3
   m_SerializeEntries:
   - m_GUID: 04a6481b9ea6a104995c3680fe8600b9
-    m_Address: "\u53D8\u901F\u5668"
+    m_Address: "Platform_\u53D8\u901F\u5668"
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

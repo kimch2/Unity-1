@@ -15,24 +15,38 @@ MonoBehaviour:
   m_GroupName: Code
   m_Data:
     m_SerializedData: []
-  m_GUID: 7d2b24a5ed2ff604c91c6f9bfba5043d
+  m_GUID: 35b8b4f8bcd7f2740b35ce13861b805a
   m_SerializeEntries:
+  - m_GUID: b4eef27fa38f7804aaa0bb9578fc146e
+    m_Address: Platform_Hotfix.pdb
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: d250e98e03d69b24aa052011e7bcbe93
-    m_Address: DyncDll.dll
+    m_Address: Platform_DyncDll.dll
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: f362e9f5b73f96142b29c625cbd9787f
-    m_Address: DyncDll.pdb
+    m_Address: Platform_DyncDll.pdb
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f4d62057bd3e9724f8ac48c7f691f63f
+    m_Address: Platform_Hotfix.dll
     m_ReadOnly: 0
     m_SerializedLabels:
     - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: fce6cab970eec7b458da050cc977f3ae
-    m_Address: Code
+    m_Address: Platform_Code
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

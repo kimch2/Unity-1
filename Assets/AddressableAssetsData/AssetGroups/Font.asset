@@ -15,10 +15,66 @@ MonoBehaviour:
   m_GroupName: Font
   m_Data:
     m_SerializedData: []
-  m_GUID: 2e707ffda49ea1147a27fc28f7275fc9
+  m_GUID: 436b5247f814767459ea66b6b3902cba
   m_SerializeEntries:
+  - m_GUID: 0d32fc7eeb08c884db8c4291fbb3a9a6
+    m_Address: Platform_DS-DIGIB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1452fedecc9799b46a0b33b577cac28a
+    m_Address: Platform_SourceHanSansCN-Normal_org
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 257edde75f25f244c8ab53ca0100bcea
+    m_Address: Platform_SourceHanSansCN-Bold_org
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 34083dd8d8f5dbc429d07150a36fd148
+    m_Address: Platform_SourceHanSansCN-Regular_org
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 67333bc88384fc74381521a144a07b12
-    m_Address: SourceHanSansCN-Regular
+    m_Address: Platform_SourceHanSansCN-Regular
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7c3109b9a846e1e43b4af639f2e02500
+    m_Address: Platform_SourceHanSansCN-Bold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7caa54238ba4ced4d8a0e6b4860a57d8
+    m_Address: Platform_Arial
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 961586defc9ed2b4583c7c39da22a831
+    m_Address: Platform_DS-DIGIB SDF
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e869a35e9af9e2a44bf1cf611d1f7717
+    m_Address: Platform_SourceHanSansCN-Medium_org
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

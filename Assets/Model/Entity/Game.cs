@@ -44,7 +44,15 @@ namespace ETModel
 			}
 		}
 
-	
+		private static Hotfix hotfix;
+
+		public static Hotfix Hotfix
+		{
+			get
+			{
+				return hotfix ?? (hotfix = new Hotfix());
+			}
+		}
 
 		public static void Close()
 		{
@@ -54,7 +62,9 @@ namespace ETModel
 			objectPool?.Dispose();
 			objectPool = null;
 			
- 			eventSystem = null;
+			hotfix = null;
+			
+			eventSystem = null;
 		}
 	}
 }

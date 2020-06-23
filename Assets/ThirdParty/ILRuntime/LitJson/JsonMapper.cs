@@ -19,6 +19,7 @@ using ILRuntime.Runtime.Intepreter;
 using ILRuntime.Runtime.Stack;
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.Utils;
+
 namespace LitJson
 {
     internal struct PropertyMetadata

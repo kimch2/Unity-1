@@ -4,45 +4,47 @@ using System.Threading;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using wxb;
+using UnityEngine.AddressableAssets;
 
 namespace ETModel
 {
     public class Init : MonoBehaviour
     {
+
+        public static string LoadExeName;
+
         void Awake()
         {
             SynchronizationContext.SetSynchronizationContext(OneThreadSynchronizationContext.Instance);
             Game.EventSystem.Add(DLLType.Model, typeof(Init).Assembly);
-        }
-
+          }
+   
         public async ETVoid StartAsync()
         {
             try
             {
-                 await hotMgr.Init();
-                 Game.EventSystem.Run(EventIdType.GameInitEvent);
-             }
+                  Game.EventSystem.Run(EventIdType.GameInitEvent);
+            }
             catch (Exception e)
             {
                 Log.Error(e);
             }
         }
-  
-         private void Update()
+
+        private void Update()
         {
             OneThreadSynchronizationContext.Instance.Update();
             Game.EventSystem.Update();
-         }
- 
-         private void LateUpdate()
+        }
+
+        private void LateUpdate()
         {
-             Game.EventSystem.LateUpdate();
+            Game.EventSystem.LateUpdate();
         }
 
         private void OnApplicationQuit()
         {
-             Game.Close();
+            Game.Close();
         }
     }
 

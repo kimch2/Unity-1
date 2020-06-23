@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using ETModel;
 using UnityEditor;
+using UnityEngine;
 
 namespace ETEditor
 {
@@ -10,11 +11,38 @@ namespace ETEditor
 
 		public static string BuildFolder = "../Release/{0}/StreamingAssets/";
 		
-		
+		//[MenuItem("Tools/编译Hotfix")]
+		public static void BuildHotfix()
+		{
+			System.Diagnostics.Process process = new System.Diagnostics.Process();
+			string unityDir = System.Environment.GetEnvironmentVariable("Unity");
+			if (string.IsNullOrEmpty(unityDir))
+			{
+				Log.Error("没有设置Unity环境变量!");
+				return;
+			}
+			process.StartInfo.FileName = $@"{unityDir}\Editor\Data\MonoBleedingEdge\bin\mono.exe";
+			process.StartInfo.Arguments = $@"{unityDir}\Editor\Data\MonoBleedingEdge\lib\mono\xbuild\14.0\bin\xbuild.exe .\Hotfix\Unity.Hotfix.csproj";
+			process.StartInfo.UseShellExecute = false;
+			process.StartInfo.WorkingDirectory = @".\";
+			process.StartInfo.RedirectStandardOutput = true;
+			process.StartInfo.RedirectStandardError = true;
+			process.Start();
+			string info = process.StandardOutput.ReadToEnd();
+			process.Close();
+			Log.Info(info);
+		}
+
 		[MenuItem("Tools/web资源服务器")]
 		public static void OpenFileServer()
 		{
-			ProcessHelper.Run("dotnet", "FileServer.dll", "../FileServer/");
+			string currentDir = System.Environment.CurrentDirectory;
+			System.Diagnostics.Process process = new System.Diagnostics.Process();
+			process.StartInfo.FileName = "dotnet";
+			process.StartInfo.Arguments = "FileServer.dll";
+			process.StartInfo.WorkingDirectory = "../FileServer/";
+			process.StartInfo.CreateNoWindow = true;
+			process.Start();
 		}
 
 		public static void Build(PlatformType type, BuildAssetBundleOptions buildAssetBundleOptions, BuildOptions buildOptions, bool isBuildExe, bool isContainAB)
@@ -39,7 +67,7 @@ namespace ETEditor
 					break;
 			}
 
-			string fold = string.Format(BuildFolder, type);
+			string fold = string.Format(BuildFolder,Application.productName);
 			if (!Directory.Exists(fold))
 			{
 				Directory.CreateDirectory(fold);
@@ -48,7 +76,8 @@ namespace ETEditor
 			Log.Info("开始资源打包");
 			BuildPipeline.BuildAssetBundles(fold, buildAssetBundleOptions, buildTarget);
 			
- 			Log.Info("完成资源打包");
+			GenerateVersionInfo(fold);
+			Log.Info("完成资源打包");
 
 			if (isContainAB)
 			{
@@ -67,5 +96,42 @@ namespace ETEditor
 				Log.Info("完成exe打包");
 			}
 		}
- 	}
+
+		private static void GenerateVersionInfo(string dir)
+		{
+			VersionConfig versionProto = new VersionConfig();
+			GenerateVersionProto(dir, versionProto, "");
+
+			using (FileStream fileStream = new FileStream($"{dir}/Version.txt", FileMode.Create))
+			{
+				byte[] bytes = JsonHelper.ToJson(versionProto).ToByteArray();
+				fileStream.Write(bytes, 0, bytes.Length);
+			}
+		}
+
+		private static void GenerateVersionProto(string dir, VersionConfig versionProto, string relativePath)
+		{
+			foreach (string file in Directory.GetFiles(dir))
+			{
+				string md5 = MD5Helper.FileMD5(file);
+				FileInfo fi = new FileInfo(file);
+				long size = fi.Length;
+				string filePath = relativePath == "" ? fi.Name : $"{relativePath}/{fi.Name}";
+
+				versionProto.FileInfoDict.Add(filePath, new FileVersionInfo
+				{
+					File = filePath,
+					MD5 = md5,
+					Size = size,
+				});
+			}
+
+			foreach (string directory in Directory.GetDirectories(dir))
+			{
+				DirectoryInfo dinfo = new DirectoryInfo(directory);
+				string rel = relativePath == "" ? dinfo.Name : $"{relativePath}/{dinfo.Name}";
+				GenerateVersionProto($"{dir}/{dinfo.Name}", versionProto, rel);
+			}
+		}
+	}
 }

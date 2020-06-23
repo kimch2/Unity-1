@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 2515093011
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d382c063b0e576f4fdd0631fecc759ea
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 51a16e16d5113854a16091e54ae5bb0d
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/AddressableAssets/Materials/Blur/Extend_Blur_UIBlurHQ.mat
+- Assets/AddressableAssets/Materials/Blur/UIBlurHQ.shader
+- Assets/AddressableAssets/Materials/Transparent.mat
+Dependencies: []

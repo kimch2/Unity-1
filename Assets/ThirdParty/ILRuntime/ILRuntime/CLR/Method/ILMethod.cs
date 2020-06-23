@@ -1,5 +1,4 @@
-﻿#if USE_HOT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -140,7 +139,7 @@ namespace ILRuntime.CLR.Method
                 isDelegateInvoke = true;
             this.appdomain = domain;
             paramCnt = def.HasParameters ? def.Parameters.Count : 0;
-#if HOT_DEBUG
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
             if (def.HasBody)
             {
                 var sp = GetValidSequence(0, 1);
@@ -422,12 +421,6 @@ namespace ILRuntime.CLR.Method
                         var m = appdomain.GetMethod(token, declaringType, this, out invalidToken);
                         if (m != null)
                         {
-                            if(code.Code == OpCodeEnum.Callvirt && m is ILMethod)
-                            {
-                                ILMethod ilm = (ILMethod)m;
-                                if (!ilm.def.IsAbstract && !ilm.def.IsVirtual && !ilm.DeclearingType.IsInterface)
-                                    code.Code = OpCodeEnum.Call;
-                            }
                             if (invalidToken)
                                 code.TokenInteger = m.GetHashCode();
                             else
@@ -620,10 +613,10 @@ namespace ILRuntime.CLR.Method
                 else
                     type = appdomain.GetType(pt, declaringType, this);
 
-                if (isArray)
-                    type = type.MakeArrayType(rank);
                 if (isByRef)
                     type = type.MakeByRefType();
+                if (isArray)
+                    type = type.MakeArrayType(rank);
                 parameters.Add(type);
             }
         }
@@ -685,5 +678,3 @@ namespace ILRuntime.CLR.Method
         }
     }
 }
-
-#endif
