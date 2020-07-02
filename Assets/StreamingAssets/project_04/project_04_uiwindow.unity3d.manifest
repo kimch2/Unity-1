@@ -1,0 +1,62 @@
+ManifestFileVersion: 0
+CRC: 1942102819
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 967474112cfa41dd61fcecb9494121a1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4d5be8aec5f7b3fc9e4cea13f49d6da7
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7afb73c1b7174964598d741e50422204, type: 3}
+- Class: 114
+  Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -146154839, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 34e785826bc754d4f9d0ddd6881378d3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3fb48d82dc0e94a2b9246d17d04f8748, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d65e0c2a5b1335444af973688ecf5e4b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/UIWindow/ProjectSet/UIStartWindow/UIStartWindow.prefab
+- Assets/Res/UIWindow/ProjectSet/UILoginWindow/UILoginWindow.prefab
+- Assets/Res/UIWindow/ProjectSet/UIStartWindow/UIBackGroundWindow.prefab
+Dependencies:
+- G:/ET-master-JS-Demo/Unity/Assets/ServerData/project_04/project_04_hotresources.unity3d
+- G:/ET-master-JS-Demo/Unity/Assets/ServerData/project_04/project_04_materials.unity3d

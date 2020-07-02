@@ -25,6 +25,15 @@ namespace ETModel
 			appdomain.DelegateManager.RegisterMethodDelegate<Session, object>();
 			appdomain.DelegateManager.RegisterMethodDelegate<Session, ushort, MemoryStream>();
 			appdomain.DelegateManager.RegisterMethodDelegate<Session>();
+			appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.AsyncOperation>();
+			appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
+			{
+				return new UnityEngine.Events.UnityAction(() =>
+				{
+					((Action)act)();
+				});
+			});
+
 			appdomain.DelegateManager.RegisterMethodDelegate<ILTypeInstance>();
 			appdomain.DelegateManager.RegisterFunctionDelegate<Google.Protobuf.Adapt_IMessage.Adaptor>();
 			appdomain.DelegateManager.RegisterMethodDelegate<Google.Protobuf.Adapt_IMessage.Adaptor>();

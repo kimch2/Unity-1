@@ -3,8 +3,9 @@
     "references": [
         "Unity.Model",
         "Unity.ThirdParty",
-        "Unity.ResourceManager",
-        "Unity.Addressables"
+        "Unity.TextMeshPro",
+        "Unity.Addressables",
+        "Unity.ResourceManager"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

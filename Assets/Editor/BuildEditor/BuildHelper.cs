@@ -9,7 +9,7 @@ namespace ETEditor
 	{
 		private const string relativeDirPrefix = "../Release";
 
-		public static string BuildFolder = "../Release/{0}/StreamingAssets/";
+		public static string BuildFolder = "Assets/ServerData/";
 		
 		//[MenuItem("Tools/编译Hotfix")]
 		public static void BuildHotfix()
@@ -45,7 +45,7 @@ namespace ETEditor
 			process.Start();
 		}
 
-		public static void Build(PlatformType type, BuildAssetBundleOptions buildAssetBundleOptions, BuildOptions buildOptions, bool isBuildExe, bool isContainAB)
+		public static void Build(PlatformType type, BuildAssetBundleOptions buildAssetBundleOptions, BuildOptions buildOptions, bool isBuildExe, bool isContainAB,string target,string version)
 		{
 			BuildTarget buildTarget = BuildTarget.StandaloneWindows;
 			string exeName = "ET";
@@ -67,16 +67,31 @@ namespace ETEditor
 					break;
 			}
 
-			string fold = string.Format(BuildFolder,Application.productName);
+			string fold = BuildFolder+target;
 			if (!Directory.Exists(fold))
 			{
 				Directory.CreateDirectory(fold);
 			}
-			
+			else
+			{
+				FileHelper.CleanDirectory(fold);
+			}
+
 			Log.Info("开始资源打包");
+		 
 			BuildPipeline.BuildAssetBundles(fold, buildAssetBundleOptions, buildTarget);
-			
-			GenerateVersionInfo(fold);
+
+			 //foreach (FileInfo item in new DirectoryInfo(fold).GetFiles())
+			 //{
+				//if (item.Name.Contains(target))
+				//{
+				//	continue;
+				//}
+			 //	var destination = $"{target}_{item.Name}";
+			 //	item.MoveTo(Path.Combine(fold, destination));
+			 //}
+
+			GenerateVersionInfo(fold, version);
 			Log.Info("完成资源打包");
 
 			if (isContainAB)
@@ -97,9 +112,10 @@ namespace ETEditor
 			}
 		}
 
-		private static void GenerateVersionInfo(string dir)
+		private static void GenerateVersionInfo(string dir,string version)
 		{
 			VersionConfig versionProto = new VersionConfig();
+			versionProto.Version = version;
 			GenerateVersionProto(dir, versionProto, "");
 
 			using (FileStream fileStream = new FileStream($"{dir}/Version.txt", FileMode.Create))
@@ -117,7 +133,7 @@ namespace ETEditor
 				FileInfo fi = new FileInfo(file);
 				long size = fi.Length;
 				string filePath = relativePath == "" ? fi.Name : $"{relativePath}/{fi.Name}";
-
+				//string filePath = fi.Name;
 				versionProto.FileInfoDict.Add(filePath, new FileVersionInfo
 				{
 					File = filePath,

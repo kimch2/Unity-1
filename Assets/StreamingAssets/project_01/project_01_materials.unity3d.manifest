@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 3037970976
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6c8ae0e2b775c8c8ef20cf4edb96393f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 011d1bb1b97750065fc8e33fbaec9bad
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/Materials/Blur/Extend_Blur_UIBlurHQ.mat
+- Assets/Res/Materials/Blur/UIBlurHQ.shader
+- Assets/Res/~UISprite/ProjectSetting/General/background.png
+- Assets/Res/Materials/Transparent.mat
+- Assets/Res/Materials/Transparent 1.mat
+Dependencies: []

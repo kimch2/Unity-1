@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 4277911097
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: platform_code.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: platform_config.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: platform_hotresources.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: platform_materials.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: platform_projectprefab.unity3d
+      Dependencies: {}
+    Info_5:
+      Name: platform_scene.unity3d
+      Dependencies:
+        Dependency_0: platform_materials.unity3d
+    Info_6:
+      Name: platform_uiwindow.unity3d
+      Dependencies:
+        Dependency_0: platform_hotresources.unity3d
+        Dependency_1: platform_materials.unity3d
+        Dependency_2: platform_projectprefab.unity3d
+    Info_7:
+      Name: platform_basescene.unity3d
+      Dependencies: {}

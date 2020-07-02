@@ -1,0 +1,405 @@
+fileFormatVersion: 2
+guid: dbfe83d71547de543adabca199bdbd17
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box285
+    100002: CDQ_JT
+    100004: CDQ_JT 1
+    100006: CDQ_JT 2
+    100008: CDQ_JT 3
+    100010: CJ_GJX
+    100012: CJ_JSJ
+    100014: Collider
+    100016: Collider_anniu001
+    100018: Collider_xuanzhuan001
+    100020: //RootNode
+    100022: fire001
+    100024: GJX008
+    100026: GJX009
+    100028: GJX010
+    100030: GJX011
+    100032: GJX012
+    100034: GJX013
+    100036: GJX014
+    100038: JSJ01
+    100040: JSJ02
+    100042: Line018
+    100044: Model
+    100046: Model 1
+    100048: Model 2
+    100050: Model001
+    100052: Object2422
+    100054: Object2423
+    100056: polySurface479
+    100058: SJQ00
+    100060: SJQ01
+    100062: SJQ02
+    100064: Sphere013
+    100066: TSGJ_CDQ
+    100068: TSGJ_FYZZ
+    100070: TSGJ_KZT
+    100072: TSGJ_XDC
+    100074: WHBY_DPXT_GJX001
+    100076: xuanzhuan_anniu001
+    100078: ZBGZ_MHQ
+    100080: CQZZ
+    100082: Model 3
+    100084: TSGJ_CQZZ
+    100086: Box1578958079
+    100088: GL
+    100090: guizi_003
+    100092: SXS_CDZ
+    400000: Box285
+    400002: CDQ_JT
+    400004: CDQ_JT 1
+    400006: CDQ_JT 2
+    400008: CDQ_JT 3
+    400010: CJ_GJX
+    400012: CJ_JSJ
+    400014: Collider
+    400016: Collider_anniu001
+    400018: Collider_xuanzhuan001
+    400020: //RootNode
+    400022: fire001
+    400024: GJX008
+    400026: GJX009
+    400028: GJX010
+    400030: GJX011
+    400032: GJX012
+    400034: GJX013
+    400036: GJX014
+    400038: JSJ01
+    400040: JSJ02
+    400042: Line018
+    400044: Model
+    400046: Model 1
+    400048: Model 2
+    400050: Model001
+    400052: Object2422
+    400054: Object2423
+    400056: polySurface479
+    400058: SJQ00
+    400060: SJQ01
+    400062: SJQ02
+    400064: Sphere013
+    400066: TSGJ_CDQ
+    400068: TSGJ_FYZZ
+    400070: TSGJ_KZT
+    400072: TSGJ_XDC
+    400074: WHBY_DPXT_GJX001
+    400076: xuanzhuan_anniu001
+    400078: ZBGZ_MHQ
+    400080: CQZZ
+    400082: Model 3
+    400084: TSGJ_CQZZ
+    400086: Box1578958079
+    400088: GL
+    400090: guizi_003
+    400092: SXS_CDZ
+    2100000: Cruze_04_Collider
+    2100002: 07 - Default4
+    2100004: 02 - Default113
+    2100006: SJQ
+    2100008: orig_orig_03 - Default
+    2100010: 'Material #2121237135'
+    2100012: JLDH_XS
+    2100014: No Name
+    2100016: CJ_XDC
+    2100018: CDQ_FJ
+    2100020: CDQ
+    2100022: HS_XS
+    2100024: WHBY_GJX
+    2100026: DH_CJ_JSJ
+    2300000: Box285
+    2300002: CDQ_JT
+    2300004: CDQ_JT 1
+    2300006: CDQ_JT 2
+    2300008: CDQ_JT 3
+    2300010: Collider
+    2300012: Collider_anniu001
+    2300014: Collider_xuanzhuan001
+    2300016: fire001
+    2300018: GJX008
+    2300020: GJX009
+    2300022: GJX010
+    2300024: GJX011
+    2300026: GJX012
+    2300028: GJX013
+    2300030: GJX014
+    2300032: JSJ01
+    2300034: JSJ02
+    2300036: Object2422
+    2300038: Object2423
+    2300040: polySurface479
+    2300042: SJQ00
+    2300044: SJQ01
+    2300046: SJQ02
+    2300048: Sphere013
+    2300050: TSGJ_XDC
+    2300052: xuanzhuan_anniu001
+    2300054: Line018
+    2300056: CQZZ
+    2300058: Box1578958079
+    2300060: GL
+    2300062: guizi_003
+    3300000: Box285
+    3300002: CDQ_JT
+    3300004: CDQ_JT 1
+    3300006: CDQ_JT 2
+    3300008: CDQ_JT 3
+    3300010: Collider
+    3300012: Collider_anniu001
+    3300014: Collider_xuanzhuan001
+    3300016: fire001
+    3300018: GJX008
+    3300020: GJX009
+    3300022: GJX010
+    3300024: GJX011
+    3300026: GJX012
+    3300028: GJX013
+    3300030: GJX014
+    3300032: JSJ01
+    3300034: JSJ02
+    3300036: Object2422
+    3300038: Object2423
+    3300040: polySurface479
+    3300042: SJQ00
+    3300044: SJQ01
+    3300046: SJQ02
+    3300048: Sphere013
+    3300050: TSGJ_XDC
+    3300052: xuanzhuan_anniu001
+    3300054: Line018
+    3300056: CQZZ
+    3300058: Box1578958079
+    3300060: GL
+    3300062: guizi_003
+    4300000: Collider_anniu001
+    4300002: Collider_xuanzhuan001
+    4300004: Object2422
+    4300006: Object2423
+    4300008: polySurface479
+    4300010: xuanzhuan_anniu001
+    4300012: SJQ00
+    4300014: SJQ01
+    4300016: SJQ02
+    4300018: fire001
+    4300020: CDQ_JT
+    4300022: CDQ_JT
+    4300024: CDQ_JT
+    4300026: CDQ_JT
+    4300028: Collider
+    4300030: TSGJ_XDC
+    4300032: Box285
+    4300034: Sphere013
+    4300036: GJX008
+    4300038: GJX009
+    4300040: GJX010
+    4300042: GJX011
+    4300044: GJX012
+    4300046: GJX013
+    4300048: GJX014
+    4300050: JSJ01
+    4300052: JSJ02
+    4300054: Line018
+    4300056: CQZZ
+    4300058: GL
+    4300060: Box1578958079
+    4300062: guizi_003
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default113
+    second: {fileID: 2100000, guid: 779131e4224f6c542b86a376045d9057, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 07 - Default4
+    second: {fileID: 2100000, guid: 6e037124849ffe44691e10b38c15ade1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BS_D
+    second: {fileID: 2100000, guid: be1e69810233c05448036df695477bd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CDQ
+    second: {fileID: 2100000, guid: 1645ec69022470a4f9a6671a4be5c91c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CDQ_FJ
+    second: {fileID: 2100000, guid: ca856fa79aeada642b031fb306f0a69b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CDZ_TT
+    second: {fileID: 2100000, guid: 10a520960a9215f4fa264364de6829a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CDZ_ZT
+    second: {fileID: 2100000, guid: b0494836e121fe14c9873d995121a965, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CJ_CTGJX
+    second: {fileID: 2100000, guid: 9887cb01c31c1fb418e1b5bae5df05ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CJ_XDC
+    second: {fileID: 2100000, guid: 13452ec00c4d943468a8819a0124a006, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cruze_04_Collider
+    second: {fileID: 2100000, guid: bb74936b5980c464fa775d61ababb511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DH_CJ_JSJ
+    second: {fileID: 2100000, guid: 83c02761c7c34fd488542d84802c467e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HMB
+    second: {fileID: 2100000, guid: a52831ecab7dac74195c91ce784e82d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HS
+    second: {fileID: 2100000, guid: 9ee61992e9eb034478fda175e3f35dd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: JLDH_XS
+    second: {fileID: 2100000, guid: bf287d9358079ab4399f48e9aa07bf64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LQSG_E5
+    second: {fileID: 2100000, guid: 7dd1e71c1bbdcaf44b647845ee098848, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LS_D
+    second: {fileID: 2100000, guid: 33fee79d5c8a22f428ec6073fdc15680, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LV_D
+    second: {fileID: 2100000, guid: 43057a4d0ad426e4c8d3a911be585035, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2121237135'
+    second: {fileID: 2100000, guid: 19c998b3ed5639a479dc14eeea185e4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SJQ
+    second: {fileID: 2100000, guid: 238543f43da8bfc4f8296dd035669c39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WHBY_GJX
+    second: {fileID: 2100000, guid: e85e5147dd988d0499b555c1766c1c4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: YJ_01
+    second: {fileID: 2100000, guid: 120abe15aae0f6a4b8617fdea8068c8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orig_orig_03 - Default
+    second: {fileID: 2100000, guid: 4099abeb5cd26354bb75e42c034fb0a2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

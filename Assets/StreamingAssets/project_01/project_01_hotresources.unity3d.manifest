@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3667249656
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4c5df4a10ec783b1915000a49092c49c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- "Assets/Res/HotResources/\u53D8\u901F\u5668.png"
+- Assets/Res/~UISprite/ProjectSetting/General/icon-user.png
+Dependencies: []

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using ETModel;
+using LitJson;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -28,6 +29,7 @@ namespace ETEditor
 		Release,
 	}
 
+ 
 	public class BuildEditor : EditorWindow
 	{
 		private readonly Dictionary<string, BundleInfo> dictionary = new Dictionary<string, BundleInfo>();
@@ -35,6 +37,14 @@ namespace ETEditor
 		private PlatformType platformType;
 		private bool isBuildExe;
 		private bool isContainAB;
+		private string targetname;
+		private string buildVersionName;
+		private int buildVersionIndex;
+ 		private int majorVersion;
+		private int minorVersion;
+		private int patchVersion;
+		private string[] buildVersionOptions = new string[] { "alpha", "beta", "release", "full version" };
+		private bool readLocalVersion;
 		private BuildType buildType;
 		private BuildOptions buildOptions = BuildOptions.AllowDebugging | BuildOptions.Development;
 		private BuildAssetBundleOptions buildAssetBundleOptions = BuildAssetBundleOptions.None;
@@ -44,14 +54,91 @@ namespace ETEditor
 		{
 			GetWindow(typeof(BuildEditor));
 		}
+		
 
 		private void OnGUI() 
 		{
+			if (!readLocalVersion)
+			{
+#if UNITY_ANDROID
+				platformType = PlatformType.Android;
+#endif
+#if UNITY_IPHONE
+				platformType = PlatformType.IOS;
+#endif
+ #if UNITY_STANDALONE_WIN
+				platformType = PlatformType.PC;
+#endif
+
+				targetname = Application.productName.ToLower();
+				var path= Path.Combine(Application.streamingAssetsPath, "BuildVersion.json");
+				if (File.Exists(path))
+				{
+					var data= File.ReadAllText(path);
+					var info= JsonMapper.ToObject<VersionInfo>(data);
+					majorVersion = info.majorVersion;
+					minorVersion = info.minorVersion;
+					patchVersion = info.patchVersion;
+					targetname = info.buildVersionName;
+					buildVersionIndex = info.buildVersionIndex;
+				}
+				readLocalVersion = true;
+			}
 			this.platformType = (PlatformType)EditorGUILayout.EnumPopup(platformType);
-			this.isBuildExe = EditorGUILayout.Toggle("是否打包EXE: ", this.isBuildExe);
-			this.isContainAB = EditorGUILayout.Toggle("是否同将资源打进EXE: ", this.isContainAB);
-			this.buildType = (BuildType)EditorGUILayout.EnumPopup("BuildType: ", this.buildType);
-			
+
+ 			this.buildType = (BuildType)EditorGUILayout.EnumPopup("BuildType: ", this.buildType);
+
+			using (EditorGUILayout.HorizontalScope horizontal = new EditorGUILayout.HorizontalScope(EditorStyles.helpBox))
+			{
+				EditorGUILayout.LabelField("打包版本：", EditorStyles.boldLabel, GUILayout.Width(100));
+
+				for (int i = 0; i < this.buildVersionOptions.Length; i++)
+				{
+					using (EditorGUILayout.HorizontalScope toggleHorizontal = new EditorGUILayout.HorizontalScope())
+					{
+						if (EditorGUILayout.Toggle(this.buildVersionIndex == i, EditorStyles.toggle, GUILayout.Width(14)) && this.buildVersionIndex != i)
+						{
+							this.buildVersionIndex = i;
+						}
+						EditorGUILayout.LabelField(this.buildVersionOptions[i], EditorStyles.label, GUILayout.Width(80));
+					}
+				}
+			}
+			using (EditorGUILayout.VerticalScope vertical = new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+			{
+				EditorGUILayout.LabelField("版本号：", EditorStyles.boldLabel, GUILayout.Width(100));
+
+				using (EditorGUILayout.VerticalScope versions = new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+				{
+					using (EditorGUILayout.HorizontalScope majorHorizontal = new EditorGUILayout.HorizontalScope())
+					{
+						EditorGUILayout.LabelField("主版本号（当 API 的兼容性变化时，X 需递增）：", EditorStyles.label);
+						this.majorVersion = EditorGUILayout.IntField(this.majorVersion, GUILayout.ExpandWidth(false));
+					}
+					using (EditorGUILayout.HorizontalScope minorHorizontal = new EditorGUILayout.HorizontalScope())
+					{
+						EditorGUILayout.LabelField("次版本号（当增加功能时(不影响 API 的兼容性)，Y 需递增）：", EditorStyles.label);
+						this.minorVersion = EditorGUILayout.IntField(this.minorVersion, GUILayout.ExpandWidth(false));
+					}
+					using (EditorGUILayout.HorizontalScope majorHorizontal = new EditorGUILayout.HorizontalScope())
+					{
+						EditorGUILayout.LabelField("修订号（当做 Bug 修复时(不影响 API 的兼容性)）：", EditorStyles.label);
+						this.patchVersion = EditorGUILayout.IntField(this.patchVersion, GUILayout.ExpandWidth(false));
+					}
+				}
+				if (this.buildVersionIndex == this.buildVersionOptions.Length - 1)
+				{
+					this.buildVersionName = $"{this.majorVersion}.{this.minorVersion}.{this.patchVersion}";
+				}
+				else
+				{
+					this.buildVersionName = $"{this.majorVersion}.{this.minorVersion}.{this.patchVersion}.{this.buildVersionOptions[this.buildVersionIndex]}{System.DateTime.Now.ToString("yyyyMMddHHmmss")}";
+				}
+ 				EditorGUILayout.TextField($"待发布版本号：{this.buildVersionName}", EditorStyles.label, GUILayout.ExpandWidth(true));
+ 			}
+
+			targetname = EditorGUILayout.TextField("打包名称",targetname);
+
 			switch (buildType)
 			{
 				case BuildType.Development:
@@ -71,7 +158,16 @@ namespace ETEditor
 					Log.Error("请选择打包平台!");
 					return;
 				}
-				BuildHelper.Build(this.platformType, this.buildAssetBundleOptions, this.buildOptions, this.isBuildExe, this.isContainAB);
+				var path = Path.Combine(Application.streamingAssetsPath, "BuildVersion.json");
+ 				VersionInfo info = new VersionInfo();
+				info.majorVersion = majorVersion;
+				info.minorVersion = minorVersion;
+				info.patchVersion = patchVersion;
+				info.buildVersionIndex = buildVersionIndex;
+				info.buildVersionName = targetname;
+				var data = JsonMapper.ToJson(info);
+				File.WriteAllText(path,data);
+				BuildHelper.Build(this.platformType, this.buildAssetBundleOptions, this.buildOptions, this.isBuildExe, this.isContainAB, targetname, buildVersionName);
 			}
 		}
 

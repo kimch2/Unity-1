@@ -6,7 +6,7 @@ namespace ETEditor
 {
     public class AddressableAssetsEditorWindow : EditorWindow
     {
-        [MenuItem("Tools/打包工具V3.1.0")]
+        //[MenuItem("Tools/打包工具V3.1.0")]
         public static void ShowDiagnosisWindow()
         {
             EditorWindow.GetWindowWithRect<AddressableAssetsEditorWindow>(new Rect(0, 0, 700, 600), false, "打包工具V3.1.0");

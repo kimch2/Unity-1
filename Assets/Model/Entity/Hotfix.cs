@@ -26,36 +26,38 @@ namespace ETModel
 		public Action Update;
 		public Action LateUpdate;
 		public Action OnApplicationQuit;
-
+ 
 		public void GotoHotfix()
 		{
 #if ILRuntime
 			ILHelper.InitILRuntime(this.appDomain);
 #endif
 			this.start.Run();
-		}
+ 		}
 
 		public List<Type> GetHotfixTypes()
 		{
 			return this.hotfixTypes;
 		}
 
-		public async ETTask LoadHotfixAssembly(string target)
+		public void LoadHotfixAssembly()
 		{
 			try
 			{
-				Game.Scene.GetComponent<ResourcesComponent>().LoadBundle($"code.unity3d");
-				GameObject code = (GameObject)Game.Scene.GetComponent<ResourcesComponent>().GetAsset("code.unity3d", "Code");
+ 				Game.Scene.GetComponent<ResourcesComponent>().LoadOneBundle($"{Global.LoadProjectName}_code.unity3d".ToLower());
+			    GameObject code = (GameObject)Game.Scene.GetComponent<ResourcesComponent>().GetAsset($"{Global.LoadProjectName}_code.unity3d", "Code");
 				byte[] assBytes = code.Get<TextAsset>("Hotfix.dll").bytes;
 				byte[] pdbBytes = code.Get<TextAsset>("Hotfix.pdb").bytes;
 
+ 
 #if ILRuntime
 				Log.Debug($"当前使用的是ILRuntime模式");
 				this.appDomain = new ILRuntime.Runtime.Enviorment.AppDomain();
 
 				this.dllStream = new MemoryStream(assBytes);
 				this.pdbStream = new MemoryStream(pdbBytes);
-				this.appDomain.LoadAssembly(this.dllStream, this.pdbStream, new Mono.Cecil.Pdb.PdbReaderProvider());
+
+ 				this.appDomain.LoadAssembly(this.dllStream, this.pdbStream, new Mono.Cecil.Pdb.PdbReaderProvider());
 
 				this.start = new ILStaticMethod(this.appDomain, "ETHotfix.Init", "Start", 0);
 
@@ -75,8 +77,7 @@ namespace ETModel
 			{
 				UnityEngine.Debug.LogError(ex.StackTrace);
 			}
-
-			Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"code.unity3d");
+			//Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"{Global.LoadProjectName}_code.unity3d");
 
 		}
 	}

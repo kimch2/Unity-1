@@ -10,9 +10,18 @@ namespace ETModel
 		public long Size;
 	}
 
+	public class VersionInfo
+	{
+ 		public string buildVersionName;
+		public int buildVersionIndex;
+		public int majorVersion;
+		public int minorVersion;
+		public int patchVersion;
+ 	}
+
 	public class VersionConfig : Object
 	{
-		public int Version;
+		public string Version;
 		
 		public long TotalSize;
 		

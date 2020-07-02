@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace ETModel
@@ -19,6 +20,7 @@ namespace ETModel
         private readonly UnOrderMultiMap<Type, Type> types = new UnOrderMultiMap<Type, Type>();
 
         private readonly Dictionary<string, List<IEvent>> allEvents = new Dictionary<string, List<IEvent>>();
+        private readonly Dictionary<string, List<IEvent>> allHotEvents = new Dictionary<string, List<IEvent>>();
 
         private readonly UnOrderMultiMap<Type, IAwakeSystem> awakeSystems = new UnOrderMultiMap<Type, IAwakeSystem>();
 
@@ -46,6 +48,12 @@ namespace ETModel
 
         private Queue<long> lateUpdates = new Queue<long>();
         private Queue<long> lateUpdates2 = new Queue<long>();
+
+
+        public void RemoveHotFixEvent()
+        {
+             allHotEvents.Clear();
+         }
 
         public void Add(DLLType dllType, Assembly assembly)
         {
@@ -129,7 +137,7 @@ namespace ETModel
                     {
                         Log.Error($"{obj.GetType().Name} 没有继承IEvent");
                     }
- 
+
                     this.RegisterEvent(aEventAttribute.Type, iEvent);
                 }
             }
@@ -137,9 +145,19 @@ namespace ETModel
             this.Load();
         }
 
+        public void RegisterHotFixEvent(string eventId, IEvent e)
+        {
+            if (!this.allHotEvents.ContainsKey(eventId))
+            {
+                this.allHotEvents.Add(eventId, new List<IEvent>());
+            }
+            this.allHotEvents[eventId].Add(e);
+        }
+
+
         public void RegisterEvent(string eventId, IEvent e)
         {
-            if (!this.allEvents.ContainsKey(eventId))
+             if (!this.allEvents.ContainsKey(eventId))
             {
                 this.allEvents.Add(eventId, new List<IEvent>());
             }
@@ -558,43 +576,74 @@ namespace ETModel
         public void Run(string type)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
+                foreach (IEvent iEvent in iEvents)
+                {
+                    try
+                    {
+                         iEvent?.Handle();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
             }
-            foreach (IEvent iEvent in iEvents)
+            if (hotEvent)
             {
-                 try
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    iEvent?.Handle();
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                         iEvent?.Handle();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
+
+
         }
 
         public async ETTask RunAsync(string type)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
+                foreach (IEvent iEvent in iEvents)
+                {
+                    try
+                    {
+                        iEvent?.HandleAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
             }
-            foreach (IEvent iEvent in iEvents)
+            if (hotEvent)
             {
-                if (iEvent == null)
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    continue;
-                }
-                try
-                {
-                    await iEvent.HandleAsync();
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.HandleAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -602,19 +651,36 @@ namespace ETModel
         public void Run<A>(string type, A a)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
-            }
-            foreach (IEvent iEvent in iEvents)
-            {
-                try
+                foreach (IEvent iEvent in iEvents)
                 {
-                    iEvent?.Handle(a);
+                    try
+                    {
+                        iEvent?.Handle(a);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+            }
+            if (hotEvent)
+            {
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.Handle(a);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -622,23 +688,36 @@ namespace ETModel
         public async ETTask RunAsync<A>(string type, A a)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
+                foreach (IEvent iEvent in iEvents)
+                {
+                    try
+                    {
+                        iEvent?.HandleAsync(a);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
             }
-            foreach (IEvent iEvent in iEvents)
+            if (hotEvent)
             {
-                if (iEvent == null)
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    continue;
-                }
-                try
-                {
-                    await iEvent.HandleAsync(a);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.HandleAsync(a);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -646,19 +725,36 @@ namespace ETModel
         public void Run<A, B>(string type, A a, B b)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
-            }
-            foreach (IEvent iEvent in iEvents)
-            {
-                try
+                foreach (IEvent iEvent in iEvents)
                 {
-                    iEvent?.Handle(a, b);
+                    try
+                    {
+                        iEvent?.Handle(a, b);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+            }
+            if (hotEvent)
+            {
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.Handle(a, b);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -666,23 +762,36 @@ namespace ETModel
         public async ETTask RunAsync<A, B>(string type, A a, B b)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
+                foreach (IEvent iEvent in iEvents)
+                {
+                    try
+                    {
+                        iEvent?.HandleAsync(a, b);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
             }
-            foreach (IEvent iEvent in iEvents)
+            if (hotEvent)
             {
-                if (iEvent == null)
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    continue;
-                }
-                try
-                {
-                    await iEvent.HandleAsync(a, b);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.HandleAsync(a, b);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -690,19 +799,36 @@ namespace ETModel
         public void Run<A, B, C>(string type, A a, B b, C c)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
-            }
-            foreach (IEvent iEvent in iEvents)
-            {
-                try
+                foreach (IEvent iEvent in iEvents)
                 {
-                    iEvent?.Handle(a, b, c);
+                    try
+                    {
+                        iEvent?.Handle(a, b, c);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+            }
+            if (hotEvent)
+            {
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.Handle(a, b, c);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
@@ -710,23 +836,36 @@ namespace ETModel
         public async ETTask RunAsync<A, B, C>(string type, A a, B b, C c)
         {
             List<IEvent> iEvents;
-            if (!this.allEvents.TryGetValue(type, out iEvents))
+            List<IEvent> iHotEvents;
+
+            var modelEvent = this.allEvents.TryGetValue(type, out iEvents);
+            var hotEvent = this.allHotEvents.TryGetValue(type, out iHotEvents);
+            if (modelEvent)
             {
-                return;
+                foreach (IEvent iEvent in iEvents)
+                {
+                    try
+                    {
+                        iEvent?.HandleAsync(a, b, c);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
             }
-            foreach (IEvent iEvent in iEvents)
+            if (hotEvent)
             {
-                if (iEvent == null)
+                foreach (IEvent iEvent in iHotEvents)
                 {
-                    continue;
-                }
-                try
-                {
-                    await iEvent.HandleAsync(a, b, c);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        iEvent?.HandleAsync(a, b, c);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }

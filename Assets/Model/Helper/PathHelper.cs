@@ -6,30 +6,32 @@ namespace ETModel
     public static class PathHelper
     {
 
+        public static string IPAddress;
+
+        public static void Init(string ip)
+        {
+            IPAddress = ip;
+        }
 #if UNITY_ANDROID
-        public static string RemoteLoadPath = "http://139.196.233.153/Unity/Android";
+        public static string RemoteLoadPath = $"{IPAddress}/Unity/Android";
         public static string BuildPath = "Assets/ServerData/Android";
 #endif
 #if UNITY_IPHONE
-        public static string RemoteLoadPath = "http://139.196.233.153/Unity/IOS";
+        public static string RemoteLoadPath =  $"{IPAddress}/Unity/IOS";
         public static string BuildPath = "Assets/ServerData/IOS";
 #endif
 
 #if UNITY_STANDALONE_WIN
-        public static string RemoteLoadPath = "http://139.196.233.153/Unity/StandaloneWindows64/Platform";
-        public static string BuildPath = "Assets/ServerData/StandaloneWindows64";
+        public static string RemoteLoadPath =>  $"{IPAddress}/Unity/StandaloneWindows64";
+        public static string BuildPath = Application.streamingAssetsPath;
 #endif
         public static string RemoteBuildPath => UnityEngine.AddressableAssets.Addressables.RuntimePath;
         public static string SavePath
         {
             get
             {
-#if UNITY_EDITOR
-                return Path.Combine(BuildPath, Application.productName);
-#else
-         return Path.Combine(UnityEngine.AddressableAssets.Addressables.RuntimePath, Application.productName);
-#endif
-            }
+                 return Path.Combine(BuildPath, Application.productName.ToLower());
+             }
         }
 
         /// <summary>
@@ -49,7 +51,7 @@ namespace ETModel
         {
             get
             {
-                string game = Application.productName;
+                string game = Application.productName.ToLower();
                 string path = AppResPath;
                 if (Application.isMobilePlatform)
                 {

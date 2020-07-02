@@ -21,20 +21,17 @@ namespace ETHotfix
 			
 			try
 			{
+ 
 				// 注册热更层回调
 				ETModel.Game.Hotfix.Update = () => { Update(); };
 				ETModel.Game.Hotfix.LateUpdate = () => { LateUpdate(); };
 				ETModel.Game.Hotfix.OnApplicationQuit = () => { OnApplicationQuit(); };
 
-				UnityEngine.Debug.LogError("平台项目启动！");
-				UnityEngine.Debug.LogError("平台项目第一次修改成功！");
-
-
-				//Game.Scene.AddComponent<UIComponent>();
+ 				//Game.Scene.AddComponent<UIComponent>();
 				//Game.Scene.AddComponent<OpcodeTypeComponent>();
 				//Game.Scene.AddComponent<MessageDispatcherComponent>();
 
-				Game.EventSystem.Run(EventIdType.InitSceneStart);
+				//Game.EventSystem.Run(EventIdType.InitSceneStart);
 			}
 			catch (Exception e)
 			{
@@ -44,7 +41,7 @@ namespace ETHotfix
 
 		public static void Update()
 		{
-			try
+ 			try
 			{
 				Game.EventSystem.Update();
 			}
@@ -56,7 +53,7 @@ namespace ETHotfix
 
 		public static void LateUpdate()
 		{
-			try
+ 			try
 			{
 				Game.EventSystem.LateUpdate();
 			}

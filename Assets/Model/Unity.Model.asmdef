@@ -2,9 +2,9 @@
     "name": "Unity.Model",
     "references": [
         "Unity.ThirdParty",
-        "Unity.ResourceManager",
         "Unity.Addressables",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Unity.ResourceManager"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

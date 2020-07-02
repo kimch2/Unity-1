@@ -3,37 +3,79 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
+
 namespace ETModel
 {
+
+    public class ProjectConfig
+    {
+        public List<ProjectInfo> ProjectList = new List<ProjectInfo>();
+    }
+
+    public class ProjectInfo
+    {
+        public string ID;
+        public string Name;
+    }
+
     public class AssetsBundleComponent : MonoBehaviour
     {
-        public TMPro.TMP_Text Info;
-        public TMPro.TMP_Text Progress;
-        public TMPro.TMP_Text DownLoadSize;
+        public Text VersionText;
+
+        public Text Info;
+        public Text Progress;
+        public Text DownLoadSize;
         public GameObject ConfirmPanel;
         public UnityEngine.UI.Button ConfirmBtn;
+        public UnityEngine.UI.Button AllDownLoad;
 
         public Init InitScript;
  
          void Start()
         {
+             AllDownLoad.onClick.Add(DownLoadAll);
              ConfirmBtn.onClick.AddListener(DownLoadBundle);
              CheckDownLoadSize();
         }
 
+        private void DownLoadAll()
+        {
+             foreach (var item in Grid.GetComponentsInChildren<ProjectBtn>())
+            {
+                if (item.GetState() == ProjectBtnState.NeedUpdate)
+                {
+                    item.DownLoadBundle();
+                }
+            }
+        }
 
         public async void CheckDownLoadSize()
         {
             Info.text = "正在检测文件更新.......";
-
             await StartAsync();
-            UnityEngine.Debug.LogError(TotalSize);
+
+            //while (!successConnect)
+            //{
+            //     if (time == 0)
+            //    {
+            //        await StartAsync();
+            //    }
+            //    time += 1;
+            //    time =time>= 10 ? 0 : time;
+            //    await Task.Delay(1000);
+            //}
+ 
             if (TotalSize != 0)
             {
                 DownLoadSize.text = FileHelper.ConventToSize(TotalSize);
@@ -42,9 +84,8 @@ namespace ETModel
             else
             {
                 Info.text = "无需更新.......";
-                transform.Find("UpdateWindow").gameObject.SetActive(false);
-                transform.Find("ProjectSelectWindow").gameObject.SetActive(true);
-            }
+                CheckProject();
+             }
         }
 
         private VersionConfig remoteVersionConfig;
@@ -80,10 +121,13 @@ namespace ETModel
                 {
                     alreadyDownloadBytes += (long)this.webRequest.Request.downloadedBytes;
                 }
+                DownLoadSize.text =$"剩余大小: {FileHelper.ConventToSize(TotalSize- alreadyDownloadBytes)}";
+
                 return (int)(alreadyDownloadBytes * 100f / this.TotalSize);
             }
         }
 
+        bool successConnect;
         public async ETTask StartAsync()
         {
             // 获取远程的Version.txt
@@ -92,8 +136,8 @@ namespace ETModel
             {
                 using (UnityWebRequestAsync webRequestAsync = ComponentFactory.Create<UnityWebRequestAsync>())
                 {
-                    versionUrl = PathHelper.RemoteLoadPath + "/Version.txt";
-                     await webRequestAsync.DownloadAsync(versionUrl);
+                     versionUrl = PathHelper.RemoteLoadPath + "/platform/Version.txt";
+                      await webRequestAsync.DownloadAsync(versionUrl);
                     remoteVersionConfigData = webRequestAsync.Request.downloadHandler.data;
                     remoteVersionConfig = JsonHelper.FromJson<VersionConfig>(webRequestAsync.Request.downloadHandler.text);
                 }
@@ -155,7 +199,7 @@ namespace ETModel
                          continue;
                     }
 
-                    UnityEngine.Debug.LogError(fileVersionInfo.File+ "     "+ fileVersionInfo.Size);
+ 
                     this.bundles.Enqueue(fileVersionInfo.File);
                
                     this.TotalSize += fileVersionInfo.Size;
@@ -165,6 +209,7 @@ namespace ETModel
             {
                 UnityEngine.Debug.LogError(ex.StackTrace);
             }
+            successConnect = true;
          }
 
         public async ETTask DownloadAsync()
@@ -189,10 +234,9 @@ namespace ETModel
                     {
                         try
                         {
-                            using (this.webRequest = ComponentFactory.Create<UnityWebRequestAsync>())
+                             using (this.webRequest = ComponentFactory.Create<UnityWebRequestAsync>())
                             {
-                                UnityEngine.Debug.LogError(PathHelper.RemoteLoadPath + "/" + this.downloadingBundle);
-                                await this.webRequest.DownloadAsync(PathHelper.RemoteLoadPath + "/"+ this.downloadingBundle);
+                                 await this.webRequest.DownloadAsync(PathHelper.RemoteLoadPath + "/platform/" + this.downloadingBundle);
                                 byte[] data = this.webRequest.Request.downloadHandler.data;
 
                                 string path =Path.Combine( PathHelper.SavePath, this.downloadingBundle);
@@ -233,6 +277,7 @@ namespace ETModel
         public void DownLoadBundle()
         {
             DownloadAsync();
+            ConfirmBtn.gameObject.SetActive(false);
         }
  
         private float time;
@@ -241,38 +286,68 @@ namespace ETModel
 
         private void Update()
         {
+
+ 
             if (TotalSize != 0)
             {
                 if (webRequest != null)
                 {
-                    time += Time.deltaTime;
-
-                    if (time >= 1)
-                    {
-                        var speedValue = lastByte - webRequest.ByteDownloaded;
-                        lastByte = webRequest.ByteDownloaded;
-                        var data = ConventToSize(speedValue);
-                        speed = data.Key + data.Value;
-                        time = 0;
-                    }
-
-                    Progress.text = $"下载中....{ProgressValue}%    速度{speed}";
+                    Progress.text = $"下载中....{ProgressValue}%   ";
                     if (ProgressValue == 100)
                     {
                         using (FileStream fs = new FileStream(Path.Combine(PathHelper.SavePath, "Version.txt"), FileMode.Create))
                         {
                             fs.Write(remoteVersionConfigData, 0, remoteVersionConfigData.Length);
                         }
-#if UNITY_EDITOR
-                        FileHelper.CleanDirectory(PathHelper.RemoteBuildPath);
-                        FileHelper.CopyDirectory(PathHelper.BuildPath, PathHelper.RemoteBuildPath);
-#endif
-                        transform.Find("UpdateWindow").gameObject.SetActive(false);
-                        transform.Find("ProjectSelectWindow").gameObject.SetActive(true);
+                         CheckProject();
                     }
                 }
             }
         }
+
+
+        public UIGrid Grid;
+        private async void CheckProject()
+        {
+            try
+            {
+                VersionConfig streamingVersionConfig;
+                string versionPath = Path.Combine(PathHelper.SavePath, "Version.txt");
+                UnityEngine.Debug.Log(versionPath);
+                streamingVersionConfig = JsonHelper.FromJson<VersionConfig>(File.ReadAllText(versionPath));
+                VersionText.text = streamingVersionConfig.Version;
+
+                transform.Find("UpdateWindow").gameObject.SetActive(false);
+                transform.Find("ProjectSelectWindow").gameObject.SetActive(true);
+
+                using (UnityWebRequestAsync webRequestAsync = ComponentFactory.Create<UnityWebRequestAsync>())
+                {
+                    await webRequestAsync.DownloadAsync(PathHelper.RemoteLoadPath + "/ProductConfig.txt");
+                    remoteVersionConfigData = webRequestAsync.Request.downloadHandler.data;
+ 
+                    var data = JsonHelper.FromJson<ProjectConfig>(webRequestAsync.Request.downloadHandler.text);
+
+                    var namelist = data.ProjectList.Select(x => x.Name).ToList();
+                    var idlist = data.ProjectList.Select(x => x.ID).ToList();
+                    for (int i = 0; i < namelist.Count; i++)
+                    {
+                        var bytes = namelist[i].ToByteArray();
+                        namelist[i] = Encoding.UTF8.GetString(bytes);
+                    }
+                    Grid.Show(namelist);
+                    for (int i = 0; i < idlist.Count; i++)
+                    {
+                        Grid.m_ShowList[i].GetComponent<ProjectBtn>().InitProjectBtn(idlist[i]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.StackTrace);
+            }
+            
+        }
+
         private KeyValuePair<string, string> ConventToSize(ulong size)
         {
             KeyValuePair<string, string> pair;
@@ -301,5 +376,5 @@ namespace ETModel
             }
             return pair;
         }
-    }
+   }
 }

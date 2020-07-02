@@ -11,11 +11,6 @@ public class ProjectSelectComponent : Sirenix.OdinInspector.SerializedMonoBehavi
    
     public void GenerateProjectBtn()
     {
-        //foreach (var item in keyValues)
-        //{
-        //    item.Key.onClick.AddListener(()=> {
-        //        FindObjectOfType<Init>().LoadProject(item.Value);
-        //      });
-        //}
+        
     }
 }

@@ -41,7 +41,7 @@ namespace ETHotfix
 
 		public EventSystem()
 		{
-			this.types.Clear();
+  			this.types.Clear();
 			
 			List<Type> ts = ETModel.Game.Hotfix.GetHotfixTypes();
 			
@@ -111,10 +111,9 @@ namespace ETHotfix
 						Log.Error($"{obj.GetType().Name} 没有继承IEvent");
 					}
 					this.RegisterEvent(aEventAttribute.Type, iEvent);
-
-					// hotfix的事件也要注册到mono层，hotfix可以订阅mono层的事件
+ 					// hotfix的事件也要注册到mono层，hotfix可以订阅mono层的事件
 					Action<List<object>> action = list => { Handle(iEvent, list); };
-					ETModel.Game.EventSystem.RegisterEvent(aEventAttribute.Type, new EventProxy(action));
+					ETModel.Game.EventSystem.RegisterHotFixEvent(aEventAttribute.Type, new EventProxy(action));
 				}
 			}
 

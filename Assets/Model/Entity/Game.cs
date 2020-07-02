@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading;
+using UnityEngine;
 
 namespace ETModel
 {
@@ -66,5 +67,11 @@ namespace ETModel
 			
 			eventSystem = null;
 		}
+
+		public static void Init()
+		{
+			hotfix = null;
+ 		}
+  
 	}
 }

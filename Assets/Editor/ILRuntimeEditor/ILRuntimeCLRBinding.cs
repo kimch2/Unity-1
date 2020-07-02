@@ -31,23 +31,23 @@ public static class ILRuntimeCLRBinding
         types.Add(typeof(List<ILRuntime.Runtime.Intepreter.ILTypeInstance>));
 
         ILRuntime.Runtime.CLRBinding.BindingCodeGenerator.GenerateBindingCode(types, "Assets/Model/ILBinding");
-		AssetDatabase.Refresh();
+        AssetDatabase.Refresh();
     }
 
     [MenuItem("Tools/ILRuntime/Generate CLR Binding Code by Analysis")]
     static void GenerateCLRBindingByAnalysis()
     {
-	    GenerateCLRBinding();
-	    
+        GenerateCLRBinding();
+
         //用新的分析热更dll调用引用来生成绑定代码
         ILRuntime.Runtime.Enviorment.AppDomain domain = new ILRuntime.Runtime.Enviorment.AppDomain();
         using (FileStream fs = new FileStream("Assets/Res/Code/Hotfix.dll.bytes", FileMode.Open, FileAccess.Read))
         {
-	        domain.LoadAssembly(fs);
-	        //Crossbind Adapter is needed to generate the correct binding code
-	        ILHelper.InitILRuntime(domain);
-	        ILRuntime.Runtime.CLRBinding.BindingCodeGenerator.GenerateBindingCode(domain, "Assets/Model/ILBinding");
-	        AssetDatabase.Refresh();
+            domain.LoadAssembly(fs);
+            //Crossbind Adapter is needed to generate the correct binding code
+            ILHelper.InitILRuntime(domain);
+            ILRuntime.Runtime.CLRBinding.BindingCodeGenerator.GenerateBindingCode(domain, "Assets/Model/ILBinding");
+            AssetDatabase.Refresh();
         }
     }
 }

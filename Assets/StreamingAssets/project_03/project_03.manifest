@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 3314751600
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: project_03_code.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: project_03_config.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: project_03_hotresources.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: project_03_materials.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: project_03_scene.unity3d
+      Dependencies:
+        Dependency_0: project_03_materials.unity3d
+    Info_5:
+      Name: project_03_uiwindow.unity3d
+      Dependencies:
+        Dependency_0: project_03_hotresources.unity3d
+        Dependency_1: project_03_materials.unity3d

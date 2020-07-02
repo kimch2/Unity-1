@@ -42,7 +42,7 @@ namespace ETModel
 
 			if (this.AssetBundle != null)
 			{
-				this.AssetBundle.Unload(true);
+ 				this.AssetBundle.Unload(true);
 			}
 
 			this.RefCount = 0;
@@ -57,10 +57,10 @@ namespace ETModel
 		
 		public static readonly Dictionary<string, string> StringToABDict = new Dictionary<string, string>();
 
-		public static readonly Dictionary<string, string> BundleNameToLowerDict = new Dictionary<string, string>() 
+		public static Dictionary<string, string> BundleNameToLowerDict => new Dictionary<string, string>() 
 		{
-			{ "StreamingAssets", "StreamingAssets" }
-		};
+			{ "StreamingAssets", "StreamingAssets" },
+ 		};
 		
 		// 缓存包依赖，不用每次计算
 		public static Dictionary<string, string[]> DependenciesCache = new Dictionary<string, string[]>();
@@ -98,7 +98,7 @@ namespace ETModel
 		
 		public static string BundleNameToLower(this string value)
 		{
-			string result;
+   			string result;
 			if (BundleNameToLowerDict.TryGetValue(value, out result))
 			{
 				return result;
@@ -124,6 +124,8 @@ namespace ETModel
 			}
 			else
 			{
+				if(ResourcesComponent.AssetBundleManifestObject==null)
+					return dependencies;
 				dependencies = ResourcesComponent.AssetBundleManifestObject.GetAllDependencies(assetBundleName);
 			}
 			DependenciesCache.Add(assetBundleName, dependencies);
@@ -195,9 +197,10 @@ namespace ETModel
 		public UnityEngine.Object GetAsset(string bundleName, string prefab)
 		{
 			Dictionary<string, UnityEngine.Object> dict;
-			if (!this.resourceCache.TryGetValue(bundleName.BundleNameToLower(), out dict))
+  			if (!this.resourceCache.TryGetValue(bundleName.BundleNameToLower(), out dict))
 			{
-				throw new Exception($"not found asset: {bundleName} {prefab}");
+				UnityEngine.Debug.LogError(bundleName.BundleNameToLower());
+ 				throw new Exception($"not found asset: {bundleName} {prefab}");
 			}
 
 			UnityEngine.Object resource = null;
@@ -229,6 +232,7 @@ namespace ETModel
 			ABInfo abInfo;
 			if (!this.bundles.TryGetValue(assetBundleName, out abInfo))
 			{
+				return;
 				throw new Exception($"not found assetBundle: {assetBundleName}");
 			}
 			
@@ -241,21 +245,20 @@ namespace ETModel
 				return;
 			}
 
-
-			this.bundles.Remove(assetBundleName);
+ 			this.bundles.Remove(assetBundleName);
 			this.resourceCache.Remove(assetBundleName);
 			abInfo.Dispose();
 			//Log.Debug($"cache count: {this.cacheDictionary.Count}");
 		}
 
-		/// <summary>
+ 		/// <summary>
 		/// 同步加载assetbundle
 		/// </summary>
 		/// <param name="assetBundleName"></param>
 		/// <returns></returns>
 		public void LoadBundle(string assetBundleName)
 		{
-			assetBundleName = assetBundleName.ToLower();
+ 			assetBundleName = assetBundleName.ToLower();
 			string[] dependencies = AssetBundleHelper.GetSortedDependencies(assetBundleName);
 			//Log.Debug($"-----------dep load {assetBundleName} dep: {dependencies.ToList().ListToString()}");
 			foreach (string dependency in dependencies)
@@ -295,10 +298,12 @@ namespace ETModel
 				string[] realPath = null;
 #if UNITY_EDITOR
 				realPath = AssetDatabase.GetAssetPathsFromAssetBundle(assetBundleName);
+				UnityEngine.Debug.Log(realPath);
+
 				foreach (string s in realPath)
 				{
 					string assetName = Path.GetFileNameWithoutExtension(s);
-					UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(s);
+ 					UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(s);
 					AddResource(assetBundleName, assetName, resource);
 				}
 
@@ -310,10 +315,10 @@ namespace ETModel
 			}
 
 			string p = Path.Combine(PathHelper.AppHotfixResPath, assetBundleName);
-			AssetBundle assetBundle = null;
+ 			AssetBundle assetBundle = null;
 			if (File.Exists(p))
 			{
-				assetBundle = AssetBundle.LoadFromFile(p);
+  				assetBundle = AssetBundle.LoadFromFile(p);
 			}
 			else
 			{
@@ -389,6 +394,7 @@ namespace ETModel
 			}
 
 			string p = Path.Combine(PathHelper.AppHotfixResPath, assetBundleName);
+			UnityEngine.Debug.Log(p);
 			AssetBundle assetBundle = null;
 			if (!File.Exists(p))
 			{

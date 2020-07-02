@@ -83,7 +83,7 @@ public class UIGrid : MonoBehaviour
         }
         for (int i = 0; i < ItemName.Count; i++)
         {
-            m_GameObjectPool[i].GetComponentInChildren<TMPro.TMP_Text>().text = ItemName[i];
+            m_GameObjectPool[i].GetComponentInChildren<Text>().text = ItemName[i];
             m_GameObjectPool[i].transform.localScale = Vector3.zero;
             m_GameObjectPool[i].gameObject.SetActive(true);
             if (SpaceList.Count > 0)
@@ -149,7 +149,7 @@ public class UIGrid : MonoBehaviour
         }
         for (int i = 0; i < ItemName.Count; i++)
         {
-            m_GameObjectPool[i].GetComponentInChildren<TMPro.TMP_Text>().text = ItemName[i];
+            m_GameObjectPool[i].GetComponentInChildren<Text>().text = ItemName[i];
             m_GameObjectPool[i].transform.Find(imageName).GetComponent<Image>().sprite = sprites[i];
             m_GameObjectPool[i].transform.Find(imageName).GetComponent<Image>().SetNativeSize();
             m_GameObjectPool[i].gameObject.SetActive(true);

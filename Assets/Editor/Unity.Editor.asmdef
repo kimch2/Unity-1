@@ -5,9 +5,9 @@
         "Unity.ThirdParty",
         "Unity.ResourceManager",
         "Unity.Addressables",
-        "Unity.Addressables.Editor",
         "Unity.TextMeshPro",
-        "Unity.TextMeshPro.Editor"
+        "Unity.TextMeshPro.Editor",
+        "Unity.Addressables.Editor"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

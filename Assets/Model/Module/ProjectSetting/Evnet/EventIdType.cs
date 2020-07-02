@@ -11,7 +11,10 @@ namespace ETModel {
         public const string DisplayTargetEvent = "DisplayTargetEvent";
         public const string CancelDisplayEvent = "CancelDisplayEvent";
         public const string MoveCameraEventByID = "MoveCameraEventByID";
+        public const string InitSceneStart = "InitSceneStart";
+        public const string OpenProjectEvent = "OpenProjectEvent";
 
+        public const string ProjectQuitEvent = "ProjectQuitEvent";
 
         /// <summary>
         /// 确认登陆事件
